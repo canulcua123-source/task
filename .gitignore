@@ -1,14 +1,23 @@
+# Tokens y sesiones
 .token_cache.json
 .teams_session*/
 .ts_*/
+
+# Python
 *.pyc
 __pycache__/
 .venv/
+
+# Temporales
 assets/portada_*.png
-assets/teams_*.png
-assets/tarea_detalle_*.png
-assets/teams_logged.png
-assets/teams_login_fail.png
-assets/teams_subido.png
-assets/teams_no_boton.png
 .DS_Store
+*.tmp.json
+
+# Sandbox (tareas y entregas locales)
+sandbox/
+
+# Assets generados
+assets/*.png
+
+# Scripts auxiliares one-off
+tareas_teams.json

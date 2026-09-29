@@ -16,7 +16,7 @@ from pathlib import Path
 BASE_DIR = Path(__file__).parent
 CONFIG_PATH = BASE_DIR / "config.json"
 DB_PATH = BASE_DIR / "tareas_db.json"
-ENTREGAS_DIR = BASE_DIR / "entregas"
+ENTREGAS_DIR = BASE_DIR / "sandbox" / "entregas"
 
 ENTREGAS_DIR.mkdir(exist_ok=True)
 
