@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cartel 3 — Procedimiento ante Ciberacoso</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&family=Playfair+Display:wght@700;900&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background: #0f0f1a;
+    color: #fff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+  }
+
+  .poster {
+    width: 800px;
+    min-height: 1100px;
+    background: linear-gradient(160deg, #1a202c 0%, #22543d 50%, #276749 100%);
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.5);
+  }
+
+  .poster::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -25%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(72,187,120,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .header {
+    background: linear-gradient(135deg, #276749, #22543d);
+    padding: 30px 40px;
+    position: relative;
+  }
+
+  .header .tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.2);
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+
+  .header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 900;
+    line-height: 1.15;
+  }
+
+  .header .subtitle {
+    font-size: 15px;
+    margin-top: 8px;
+    opacity: 0.9;
+  }
+
+  .content {
+    padding: 28px 40px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .flow-label {
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #68d391;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .steps {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .step {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    position: relative;
+  }
+
+  .step-left {
+    flex-shrink: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .step-num {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 900;
+    color: #fff;
+    position: relative;
+    z-index: 2;
+  }
+
+  .step:nth-child(1) .step-num,
+  .step:nth-child(2) .step-num { background: linear-gradient(135deg, #48bb78, #38a169); }
+  .step:nth-child(3) .step-num,
+  .step:nth-child(4) .step-num { background: linear-gradient(135deg, #4299e1, #3182ce); }
+  .step:nth-child(5) .step-num,
+  .step:nth-child(6) .step-num { background: linear-gradient(135deg, #ed8936, #dd6b20); }
+  .step:nth-child(7) .step-num,
+  .step:nth-child(8) .step-num { background: linear-gradient(135deg, #9f7aea, #805ad5); }
+  .step:nth-child(9) .step-num,
+  .step:nth-child(10) .step-num { background: linear-gradient(135deg, #fc8181, #e53e3e); }
+
+  .step-connector {
+    width: 2px;
+    height: 10px;
+    background: rgba(255,255,255,0.15);
+    flex-shrink: 0;
+  }
+
+  .step-body {
+    flex: 1;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 12px;
+    padding: 14px 18px;
+  }
+
+  .step-body h3 {
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 4px;
+  }
+
+  .step-body p {
+    font-size: 12.5px;
+    color: #a0aec0;
+    line-height: 1.55;
+  }
+
+  .risk-levels {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 8px;
+    margin-top: 6px;
+  }
+
+  .risk {
+    text-align: center;
+    padding: 6px 4px;
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .risk.low { background: rgba(72,187,120,0.2); color: #68d391; }
+  .risk.med { background: rgba(237,137,54,0.2); color: #fbd38d; }
+  .risk.high { background: rgba(229,62,62,0.2); color: #fc8181; }
+  .risk.crit { background: rgba(229,62,62,0.35); color: #fff5f5; }
+
+  .flow-summary {
+    background: rgba(72,187,120,0.1);
+    border: 1px solid rgba(72,187,120,0.25);
+    border-radius: 14px;
+    padding: 16px 20px;
+    margin-top: 20px;
+    text-align: center;
+  }
+
+  .flow-summary .label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #68d391;
+    margin-bottom: 8px;
+  }
+
+  .flow-summary .chain {
+    font-size: 13px;
+    color: #c6f6d5;
+    line-height: 1.8;
+    font-weight: 600;
+  }
+
+  .flow-summary .arrow {
+    color: #48bb78;
+    margin: 0 4px;
+  }
+
+  .footer {
+    background: rgba(0,0,0,0.25);
+    padding: 16px 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 11px;
+    color: #718096;
+  }
+
+  .footer .materia {
+    font-weight: 600;
+    color: #a0aec0;
+  }
+
+  @media print {
+    body { background: #fff; padding: 0; }
+    .poster { box-shadow: none; border-radius: 0; width: 100%; min-height: 100vh; }
+  }
+</style>
+</head>
+<body>
+<div class="poster">
+  <div class="header">
+    <div class="tag">Cartel 3 de 3</div>
+    <h1>Procedimiento ante un<br>Caso de Ciberacoso</h1>
+    <p class="subtitle">Protocolo de actuación propuesto para plataformas digitales</p>
+  </div>
+
+  <div class="content">
+    <div class="flow-label">10 pasos del procedimiento</div>
+
+    <div class="steps">
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num">1</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-body">
+          <h3>Recepción de la denuncia</h3>
+          <p>El usuario identifica el motivo: acoso, amenaza, información privada, ataque coordinado, contenido sobre menor o difusión de material íntimo sin consentimiento.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num">2</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-body">
+          <h3>Registro y protección de evidencia</h3>
+          <p>Se conserva: contenido denunciado, fecha, cuenta responsable, enlaces, comentarios relevantes y motivo de la denuncia.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num">3</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-body">
+          <h3>Evaluación de riesgo</h3>
+          <p>Clasificación del caso según gravedad:</p>
+          <div class="risk-levels">
+            <div class="risk low">Bajo<br><span style="font-weight:400;font-size:9px;text-transform:none;">Insulto aislado</span></div>
+            <div class="risk med">Medio<br><span style="font-weight:400;font-size:9px;text-transform:none;">Hostigamiento repetitivo</span></div>
+            <div class="risk high">Alto<br><span style="font-weight:400;font-size:9px;text-transform:none;">Ataques coordinados, menores</span></div>
+            <div class="risk crit">Crítico<br><span style="font-weight:400;font-size:9px;text-transform:none;">Amenazas, riesgo físico</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num">4</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-body">
+          <h3>Revisión del contenido</h3>
+          <p>Revisión inicial automatizada. Casos graves requieren revisión humana considerando el contexto completo, no solo palabras aisladas.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num">5</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-body">
+          <h3>Protección inmediata</h3>
+          <p>Mientras se investiga: limitar contenido, restringir comentarios, desactivar funciones, facilitar bloqueo, reducir exposición de información privada.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num">6</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-body">
+          <h3>Decisión</h3>
+          <p>Con base en la evidencia se determina si existió infracción. Sin infracción: el contenido permanece. Con infracción: se selecciona sanción proporcional.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num">7</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-body">
+          <h3>Aplicación de la sanción</h3>
+          <p>Advertencia → eliminación → restricción → desmonetización → suspensión → eliminación permanente. En casos graves no es necesario comenzar desde la advertencia.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num">8</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-body">
+          <h3>Notificación</h3>
+          <p>Se informa al denunciante que el reporte fue revisado. Se comunica al sancionado qué política infringió y la consecuencia aplicada.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num">9</div>
+          <div class="step-connector"></div>
+        </div>
+        <div class="step-body">
+          <h3>Apelación</h3>
+          <p>El sancionado puede solicitar nueva revisión si considera la decisión incorrecta. Otro proceso revisa la evidencia y el contexto.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <div class="step-left">
+          <div class="step-num">10</div>
+        </div>
+        <div class="step-body">
+          <h3>Seguimiento</h3>
+          <p>Monitoreo de creación de cuentas nuevas para evadir sanciones, reincidencia y continuidad de ataques coordinados.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-summary">
+      <div class="label">Resumen del flujo</div>
+      <div class="chain">
+        Denuncia <span class="arrow">→</span> Evidencia <span class="arrow">→</span> Riesgo <span class="arrow">→</span> Revisión <span class="arrow">→</span> Protección <span class="arrow">→</span> Decisión <span class="arrow">→</span> Sanción <span class="arrow">→</span> Notificación <span class="arrow">→</span> Apelación <span class="arrow">→</span> Seguimiento
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    <span class="materia">Ética y Legislación en TI — UTM</span>
+    <span>7° Cuatrimestre · Grupo A · Sep 2026</span>
+  </div>
+</div>
+</body>
+</html>

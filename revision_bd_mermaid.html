@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagrama ER — Taller Mecánico (con correcciones)</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            padding: 2rem;
+        }
+        .container { max-width: 1200px; margin: 0 auto; }
+        h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #f97316, #ef4444);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.3rem;
+        }
+        .subtitle { color: #94a3b8; font-size: 0.9rem; margin-bottom: 1rem; }
+        h2 { font-size: 1.3rem; color: #fbbf24; margin: 2rem 0 0.5rem; }
+        h2.green { color: #6ee7b7; }
+
+        .diagram-box {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            overflow-x: auto;
+        }
+        .mermaid { display: flex; justify-content: center; }
+        .mermaid svg { max-width: 100%; height: auto; }
+
+        .legend {
+            display: flex; flex-wrap: wrap; gap: 1.5rem;
+            background: #1e293b; border-radius: 12px; padding: 1rem 1.5rem;
+            margin-bottom: 1.5rem; font-size: 0.85rem;
+        }
+        .legend-item { display: flex; align-items: center; gap: 0.4rem; }
+        .dot { width: 12px; height: 12px; border-radius: 50%; flex-shrink: 0; }
+        .dot-red { background: #ef4444; }
+        .dot-yellow { background: #f59e0b; }
+        .dot-blue { background: #3b82f6; }
+        .dot-green { background: #22c55e; }
+
+        .notes {
+            background: #1e293b; border-radius: 12px; padding: 1.2rem 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .notes h3 { color: #94a3b8; font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.8rem; }
+        .notes ul { list-style: none; padding: 0; }
+        .notes li { padding: 0.4rem 0; border-bottom: 1px solid #2d3a4f; font-size: 0.9rem; }
+        .notes li:last-child { border: none; }
+        .tag {
+            display: inline-block; padding: 0.1em 0.5em; border-radius: 4px;
+            font-size: 0.75rem; font-weight: 600; margin-right: 0.4rem;
+        }
+        .tag-red { background: #7f1d1d; color: #fca5a5; }
+        .tag-yellow { background: #78350f; color: #fcd34d; }
+        .tag-blue { background: #1e3a5f; color: #93c5fd; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Diagrama ER — Taller Mecánico</h1>
+        <p class="subtitle">Diseño actual con problemas señalados</p>
+
+        <div class="legend">
+            <div class="legend-item"><span class="dot dot-red"></span> Relación con problema crítico</div>
+            <div class="legend-item"><span class="dot dot-yellow"></span> Campo con problema de diseño</div>
+            <div class="legend-item"><span class="dot dot-blue"></span> Problema menor</div>
+        </div>
+
+        <h2>Diagrama ACTUAL (con errores)</h2>
+        <div class="diagram-box">
+            <pre class="mermaid">
+erDiagram
+    fabricante {
+        BIGINT id_fabricante PK
+        VARCHAR nombre
+    }
+    modelo {
+        BIGINT id_modelo PK
+        VARCHAR nombre
+        BIGINT id_fabricante FK
+    }
+    vehiculo {
+        BIGINT id_vehiculo PK
+        VARCHAR placa "⚠ VARCHAR(7) muy corto"
+        INTEGER anio_fabricacion
+        VARCHAR color
+        BIGINT id_cliente FK
+        BIGINT id_modelo FK
+    }
+    cliente {
+        BIGINT id_cliente PK
+        VARCHAR nombre "⚠ Sin separar apellidos"
+        VARCHAR telefono
+        VARCHAR correo "⚠ Sin índice"
+    }
+    orden_servicio {
+        BIGINT id_orden PK
+        VARCHAR folio "⚠ Sin índice"
+        TIMESTAMPTZ fecha_ingreso
+        TEXT diagnostico
+        BIGINT kilometraje "⚠ BIGINT excesivo"
+        NUMERIC costo_total "⚠ Dato calculable"
+        VARCHAR estado "⚠ Sin ENUM"
+        BIGINT id_vehiculo FK
+        BIGINT id_mecanico FK "⚠ Solo 1 mecánico"
+    }
+    mecanico {
+        BIGINT id_mecanico PK
+        VARCHAR nombre "⚠ Sin separar apellidos"
+        DATE fecha_ingreso
+        VARCHAR especialidad "⚠ VARCHAR(20) corto"
+    }
+    detalle_orden {
+        BIGINT id_orden PK "⚠ PK compuesta limita"
+        BIGINT id_refaccion PK
+        INTEGER cantidad
+        NUMERIC precio
+    }
+    refaccion {
+        BIGINT id_refaccion PK
+        VARCHAR codigo_p "⚠ Sin índice"
+        VARCHAR nombre
+        NUMERIC precio
+        INTEGER existencias
+    }
+
+    fabricante ||--o{ modelo : "RESTRICT ✓"
+    modelo ||--o{ vehiculo : "RESTRICT ✓"
+    cliente ||--o{ vehiculo : "🔴 CASCADE"
+    vehiculo ||--o{ orden_servicio : "🔴 SET NULL"
+    mecanico ||--o{ orden_servicio : "🔴 directo"
+    orden_servicio ||--o{ detalle_orden : "CASCADE ✓"
+    refaccion ||--o{ detalle_orden : "RESTRICT ✓"
+            </pre>
+        </div>
+
+        <h2 class="green">Diagrama CORREGIDO (propuesta)</h2>
+        <div class="diagram-box">
+            <pre class="mermaid">
+erDiagram
+    fabricante {
+        BIGINT id_fabricante PK
+        VARCHAR100 nombre
+    }
+    modelo {
+        BIGINT id_modelo PK
+        VARCHAR100 nombre
+        BIGINT id_fabricante FK
+    }
+    vehiculo {
+        BIGINT id_vehiculo PK
+        VARCHAR15 placa "✓ Ampliado"
+        INTEGER anio_fabricacion
+        VARCHAR50 color
+        BIGINT id_cliente FK
+        BIGINT id_modelo FK
+    }
+    cliente {
+        BIGINT id_cliente PK
+        VARCHAR60 nombre "✓ Separado"
+        VARCHAR60 apellido_paterno "✓ NUEVO"
+        VARCHAR60 apellido_materno "✓ NUEVO"
+        VARCHAR20 telefono
+        VARCHAR150 correo "✓ Con índice"
+    }
+    orden_servicio {
+        BIGINT id_orden PK
+        VARCHAR30 folio "✓ Con índice"
+        TIMESTAMPTZ fecha_ingreso
+        TIMESTAMPTZ fecha_salida "✓ NUEVO"
+        TEXT diagnostico
+        INTEGER kilometraje "✓ Corregido"
+        VARCHAR20 estado "✓ Usar ENUM"
+        BIGINT id_vehiculo FK
+    }
+    mecanico {
+        BIGINT id_mecanico PK
+        VARCHAR60 nombre "✓ Separado"
+        VARCHAR60 apellido_paterno "✓ NUEVO"
+        VARCHAR60 apellido_materno "✓ NUEVO"
+        DATE fecha_ingreso
+    }
+    especialidad {
+        BIGINT id_especialidad PK
+        VARCHAR100 nombre "✓ NUEVA TABLA"
+    }
+    mecanico_especialidad {
+        BIGINT id_mecanico FK "✓ NUEVA TABLA"
+        BIGINT id_especialidad FK
+    }
+    mecanico_orden {
+        BIGINT id_mecanico FK "✓ NUEVA TABLA"
+        BIGINT id_orden FK
+        VARCHAR50 rol
+    }
+    detalle_orden {
+        BIGINT id_detalle PK "✓ PK propia"
+        BIGINT id_orden FK
+        BIGINT id_refaccion FK
+        INTEGER cantidad
+        NUMERIC precio
+    }
+    refaccion {
+        BIGINT id_refaccion PK
+        VARCHAR50 codigo_p "✓ Con índice"
+        VARCHAR150 nombre
+        NUMERIC precio
+        INTEGER existencias
+    }
+
+    fabricante ||--o{ modelo : "RESTRICT"
+    modelo ||--o{ vehiculo : "RESTRICT"
+    cliente ||--o{ vehiculo : "✓ RESTRICT"
+    vehiculo ||--o{ orden_servicio : "✓ RESTRICT"
+    orden_servicio ||--o{ mecanico_orden : "CASCADE"
+    mecanico ||--o{ mecanico_orden : "RESTRICT"
+    mecanico ||--o{ mecanico_especialidad : "CASCADE"
+    especialidad ||--o{ mecanico_especialidad : "RESTRICT"
+    orden_servicio ||--o{ detalle_orden : "CASCADE"
+    refaccion ||--o{ detalle_orden : "RESTRICT"
+            </pre>
+        </div>
+
+        <div class="notes">
+            <h3>Resumen de cambios</h3>
+            <ul>
+                <li><span class="tag tag-red">CRÍTICO</span> <code>cliente → vehiculo</code>: CASCADE → <strong>RESTRICT</strong></li>
+                <li><span class="tag tag-red">CRÍTICO</span> <code>vehiculo → orden_servicio</code>: SET NULL → <strong>RESTRICT</strong></li>
+                <li><span class="tag tag-red">CRÍTICO</span> Tabla <strong>mecanico_orden</strong> creada (N:M mecánicos por orden)</li>
+                <li><span class="tag tag-yellow">DISEÑO</span> <code>nombre</code> separado en <strong>nombre, apellido_paterno, apellido_materno</strong> en cliente y mecanico</li>
+                <li><span class="tag tag-yellow">DISEÑO</span> <code>costo_total</code> eliminado — calcularlo con vista</li>
+                <li><span class="tag tag-yellow">DISEÑO</span> Tablas <strong>especialidad</strong> + <strong>mecanico_especialidad</strong> creadas</li>
+                <li><span class="tag tag-yellow">DISEÑO</span> <code>estado</code> debe usar ENUM o tabla catálogo</li>
+                <li><span class="tag tag-yellow">DISEÑO</span> <code>fecha_salida</code> agregada a orden_servicio</li>
+                <li><span class="tag tag-blue">MENOR</span> <code>kilometraje</code>: BIGINT → INTEGER</li>
+                <li><span class="tag tag-blue">MENOR</span> <code>placa</code>: VARCHAR(7) → VARCHAR(15)</li>
+                <li><span class="tag tag-blue">MENOR</span> Índices en <code>placa, folio, correo, codigo_p</code></li>
+                <li><span class="tag tag-blue">MENOR</span> <code>detalle_orden</code>: PK compuesta → <code>id_detalle</code> propio</li>
+            </ul>
+        </div>
+        <!-- NUEVAS ÁREAS DE MEJORA -->
+        <div class="notes" style="margin-top: 2.5rem; border-left: 4px solid #a78bfa;">
+            <h3 style="color: #a78bfa;">Nuevas áreas de mejora detectadas</h3>
+            <ul>
+                <li><span class="tag" style="background:#4c1d95;color:#c4b5fd;">NUEVO</span> <strong>Falta UNIQUE en <code>placa</code></strong> — Dos vehículos no deben tener la misma placa. Sin constraint UNIQUE se pueden duplicar registros.</li>
+                <li><span class="tag" style="background:#4c1d95;color:#c4b5fd;">NUEVO</span> <strong>Falta UNIQUE en <code>correo</code> de cliente</strong> — Permite registrar el mismo cliente dos veces con el mismo correo.</li>
+                <li><span class="tag" style="background:#4c1d95;color:#c4b5fd;">NUEVO</span> <strong>Falta UNIQUE en <code>codigo_p</code> de refacción</strong> — El código de parte debe ser único por definición.</li>
+                <li><span class="tag" style="background:#4c1d95;color:#c4b5fd;">NUEVO</span> <strong>Sin validación de <code>cantidad > 0</code></strong> — En <code>detalle_orden</code> nada impide cantidades negativas o cero. Agregar <code>CHECK (cantidad > 0)</code>.</li>
+                <li><span class="tag" style="background:#4c1d95;color:#c4b5fd;">NUEVO</span> <strong>Sin validación de <code>precio >= 0</code></strong> — En <code>detalle_orden</code> y <code>refaccion</code> falta <code>CHECK (precio >= 0)</code>.</li>
+                <li><span class="tag" style="background:#4c1d95;color:#c4b5fd;">NUEVO</span> <strong>Sin validación de <code>existencias >= 0</code></strong> — Puede quedar negativo sin un CHECK constraint.</li>
+                <li><span class="tag" style="background:#4c1d95;color:#c4b5fd;">NUEVO</span> <strong>Sin historial de precios de refacción</strong> — Si el precio cambia, no hay registro del precio anterior. Considerar tabla <code>historial_precio</code> o confiar en que <code>detalle_orden.precio</code> es el snapshot.</li>
+                <li><span class="tag" style="background:#4c1d95;color:#c4b5fd;">NUEVO</span> <strong>Falta <code>created_at</code> / <code>updated_at</code></strong> — Ninguna tabla tiene timestamps de auditoría. Esencial para rastrear cuándo se creó o modificó un registro.</li>
+            </ul>
+        </div>
+
+        <!-- CONSULTAS JOIN -->
+        <div style="margin-top: 2.5rem;">
+            <h2 style="color: #67e8f9;">Consultas con INNER JOIN y LEFT JOIN</h2>
+            <p style="color: #94a3b8; font-size: 0.9rem; margin-bottom: 1.2rem;">
+                Usando el esquema <strong>corregido</strong> (con apellidos separados). Se demuestra por qué importa separar los apellidos.
+            </p>
+
+            <!-- Query 1 -->
+            <div class="diagram-box" style="border-left: 4px solid #22c55e;">
+                <h3 style="color: #6ee7b7; font-size: 1rem; margin-bottom: 0.2rem;">1. Clientes con sus vehículos — INNER JOIN</h3>
+                <p style="color: #64748b; font-size: 0.8rem; margin-bottom: 0.8rem;">Solo clientes que TIENEN vehículos. Demuestra filtro por apellido_paterno.</p>
+                <pre style="background: #0f172a; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.85rem; line-height: 1.5;"><code><span style="color:#c084fc;">SELECT</span>
+    c.nombre,
+    c.apellido_paterno,
+    c.apellido_materno,
+    v.placa,
+    m.nombre <span style="color:#c084fc;">AS</span> modelo,
+    f.nombre <span style="color:#c084fc;">AS</span> fabricante
+<span style="color:#c084fc;">FROM</span> cliente c
+<span style="color:#22c55e;">INNER JOIN</span> vehiculo v     <span style="color:#c084fc;">ON</span> v.id_cliente = c.id_cliente
+<span style="color:#22c55e;">INNER JOIN</span> modelo m       <span style="color:#c084fc;">ON</span> v.id_modelo = m.id_modelo
+<span style="color:#22c55e;">INNER JOIN</span> fabricante f   <span style="color:#c084fc;">ON</span> m.id_fabricante = f.id_fabricante
+<span style="color:#c084fc;">WHERE</span> c.apellido_paterno = <span style="color:#fbbf24;">'García'</span>
+<span style="color:#c084fc;">ORDER BY</span> c.apellido_paterno, c.apellido_materno, c.nombre;</code></pre>
+                <p style="color: #94a3b8; font-size: 0.8rem; margin-top: 0.5rem;">
+                    <strong>¿Por qué INNER JOIN?</strong> Solo nos interesan clientes que tengan al menos un vehículo registrado.<br>
+                    <strong>¿Por qué separar apellidos?</strong> Permite <code>WHERE apellido_paterno = 'García'</code> — imposible si todo está en un solo campo <code>nombre</code>.
+                </p>
+            </div>
+
+            <!-- Query 2 -->
+            <div class="diagram-box" style="border-left: 4px solid #3b82f6;">
+                <h3 style="color: #93c5fd; font-size: 1rem; margin-bottom: 0.2rem;">2. Clientes SIN vehículos — LEFT JOIN</h3>
+                <p style="color: #64748b; font-size: 0.8rem; margin-bottom: 0.8rem;">Detecta clientes registrados que nunca han traído un vehículo.</p>
+                <pre style="background: #0f172a; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.85rem; line-height: 1.5;"><code><span style="color:#c084fc;">SELECT</span>
+    c.apellido_paterno || <span style="color:#fbbf24;">' '</span> || c.apellido_materno || <span style="color:#fbbf24;">', '</span> || c.nombre <span style="color:#c084fc;">AS</span> nombre_completo,
+    c.telefono,
+    c.correo
+<span style="color:#c084fc;">FROM</span> cliente c
+<span style="color:#3b82f6;">LEFT JOIN</span> vehiculo v <span style="color:#c084fc;">ON</span> v.id_cliente = c.id_cliente
+<span style="color:#c084fc;">WHERE</span> v.id_vehiculo <span style="color:#c084fc;">IS NULL</span>;</code></pre>
+                <p style="color: #94a3b8; font-size: 0.8rem; margin-top: 0.5rem;">
+                    <strong>¿Por qué LEFT JOIN?</strong> Necesitamos TODOS los clientes, incluso los que no tienen vehículo. El <code>WHERE IS NULL</code> filtra solo los huérfanos.<br>
+                    <strong>Apellidos:</strong> Concatenamos en formato "Apellido Apellido, Nombre" para reportes formales.
+                </p>
+            </div>
+
+            <!-- Query 3 -->
+            <div class="diagram-box" style="border-left: 4px solid #22c55e;">
+                <h3 style="color: #6ee7b7; font-size: 1rem; margin-bottom: 0.2rem;">3. Órdenes con mecánicos asignados — INNER JOIN (tabla intermedia)</h3>
+                <p style="color: #64748b; font-size: 0.8rem; margin-bottom: 0.8rem;">Muestra todos los mecánicos que trabajaron en cada orden.</p>
+                <pre style="background: #0f172a; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.85rem; line-height: 1.5;"><code><span style="color:#c084fc;">SELECT</span>
+    os.folio,
+    os.fecha_ingreso,
+    m.nombre || <span style="color:#fbbf24;">' '</span> || m.apellido_paterno <span style="color:#c084fc;">AS</span> mecanico,
+    mo.rol,
+    os.estado
+<span style="color:#c084fc;">FROM</span> orden_servicio os
+<span style="color:#22c55e;">INNER JOIN</span> mecanico_orden mo <span style="color:#c084fc;">ON</span> mo.id_orden = os.id_orden
+<span style="color:#22c55e;">INNER JOIN</span> mecanico m        <span style="color:#c084fc;">ON</span> m.id_mecanico = mo.id_mecanico
+<span style="color:#c084fc;">ORDER BY</span> os.fecha_ingreso <span style="color:#c084fc;">DESC</span>;</code></pre>
+                <p style="color: #94a3b8; font-size: 0.8rem; margin-top: 0.5rem;">
+                    <strong>¿Por qué INNER JOIN?</strong> Solo órdenes que tienen mecánico asignado. La tabla <code>mecanico_orden</code> permite N mecánicos por orden.
+                </p>
+            </div>
+
+            <!-- Query 4 -->
+            <div class="diagram-box" style="border-left: 4px solid #3b82f6;">
+                <h3 style="color: #93c5fd; font-size: 1rem; margin-bottom: 0.2rem;">4. Mecánicos SIN órdenes asignadas — LEFT JOIN</h3>
+                <p style="color: #64748b; font-size: 0.8rem; margin-bottom: 0.8rem;">Detecta mecánicos ociosos (sin trabajo asignado).</p>
+                <pre style="background: #0f172a; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.85rem; line-height: 1.5;"><code><span style="color:#c084fc;">SELECT</span>
+    m.nombre,
+    m.apellido_paterno,
+    m.apellido_materno
+<span style="color:#c084fc;">FROM</span> mecanico m
+<span style="color:#3b82f6;">LEFT JOIN</span> mecanico_orden mo <span style="color:#c084fc;">ON</span> mo.id_mecanico = m.id_mecanico
+<span style="color:#c084fc;">WHERE</span> mo.id_orden <span style="color:#c084fc;">IS NULL</span>;</code></pre>
+                <p style="color: #94a3b8; font-size: 0.8rem; margin-top: 0.5rem;">
+                    <strong>¿Por qué LEFT JOIN?</strong> Queremos TODOS los mecánicos, y el <code>IS NULL</code> revela los que no tienen ninguna orden.
+                </p>
+            </div>
+
+            <!-- Query 5 -->
+            <div class="diagram-box" style="border-left: 4px solid #22c55e;">
+                <h3 style="color: #6ee7b7; font-size: 1rem; margin-bottom: 0.2rem;">5. Detalle de orden con refacciones — INNER JOIN</h3>
+                <p style="color: #64748b; font-size: 0.8rem; margin-bottom: 0.8rem;">Lista las refacciones usadas en una orden específica con subtotales.</p>
+                <pre style="background: #0f172a; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.85rem; line-height: 1.5;"><code><span style="color:#c084fc;">SELECT</span>
+    r.codigo_p,
+    r.nombre <span style="color:#c084fc;">AS</span> refaccion,
+    d.cantidad,
+    d.precio <span style="color:#c084fc;">AS</span> precio_unitario,
+    (d.cantidad * d.precio) <span style="color:#c084fc;">AS</span> subtotal
+<span style="color:#c084fc;">FROM</span> detalle_orden d
+<span style="color:#22c55e;">INNER JOIN</span> refaccion r <span style="color:#c084fc;">ON</span> r.id_refaccion = d.id_refaccion
+<span style="color:#c084fc;">WHERE</span> d.id_orden = <span style="color:#fbbf24;">1</span>;</code></pre>
+                <p style="color: #94a3b8; font-size: 0.8rem; margin-top: 0.5rem;">
+                    <strong>¿Por qué INNER JOIN?</strong> Cada detalle DEBE tener una refacción (FK obligatoria). No puede haber detalle sin refacción.
+                </p>
+            </div>
+
+            <!-- Query 6 -->
+            <div class="diagram-box" style="border-left: 4px solid #3b82f6;">
+                <h3 style="color: #93c5fd; font-size: 1rem; margin-bottom: 0.2rem;">6. Refacciones SIN uso — LEFT JOIN</h3>
+                <p style="color: #64748b; font-size: 0.8rem; margin-bottom: 0.8rem;">Refacciones en inventario que nunca se han usado en ninguna orden.</p>
+                <pre style="background: #0f172a; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.85rem; line-height: 1.5;"><code><span style="color:#c084fc;">SELECT</span>
+    r.codigo_p,
+    r.nombre,
+    r.existencias,
+    r.precio
+<span style="color:#c084fc;">FROM</span> refaccion r
+<span style="color:#3b82f6;">LEFT JOIN</span> detalle_orden d <span style="color:#c084fc;">ON</span> d.id_refaccion = r.id_refaccion
+<span style="color:#c084fc;">WHERE</span> d.id_detalle <span style="color:#c084fc;">IS NULL</span>
+<span style="color:#c084fc;">ORDER BY</span> r.existencias <span style="color:#c084fc;">DESC</span>;</code></pre>
+                <p style="color: #94a3b8; font-size: 0.8rem; margin-top: 0.5rem;">
+                    <strong>¿Por qué LEFT JOIN?</strong> TODAS las refacciones, y el <code>IS NULL</code> filtra las que nunca aparecen en un detalle. Útil para limpiar inventario muerto.
+                </p>
+            </div>
+
+            <!-- Query 7 -->
+            <div class="diagram-box" style="border-left: 4px solid #22c55e;">
+                <h3 style="color: #6ee7b7; font-size: 1rem; margin-bottom: 0.2rem;">7. Buscar duplicados por apellidos — INNER JOIN (self-join)</h3>
+                <p style="color: #64748b; font-size: 0.8rem; margin-bottom: 0.8rem;">Encuentra clientes posiblemente duplicados comparando apellidos. IMPOSIBLE sin campos separados.</p>
+                <pre style="background: #0f172a; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.85rem; line-height: 1.5;"><code><span style="color:#c084fc;">SELECT</span>
+    c1.id_cliente,
+    c1.nombre || <span style="color:#fbbf24;">' '</span> || c1.apellido_paterno || <span style="color:#fbbf24;">' '</span> || c1.apellido_materno <span style="color:#c084fc;">AS</span> cliente_1,
+    c2.id_cliente,
+    c2.nombre || <span style="color:#fbbf24;">' '</span> || c2.apellido_paterno || <span style="color:#fbbf24;">' '</span> || c2.apellido_materno <span style="color:#c084fc;">AS</span> cliente_2
+<span style="color:#c084fc;">FROM</span> cliente c1
+<span style="color:#22c55e;">INNER JOIN</span> cliente c2
+    <span style="color:#c084fc;">ON</span>  c1.apellido_paterno = c2.apellido_paterno
+    <span style="color:#c084fc;">AND</span> c1.apellido_materno = c2.apellido_materno
+    <span style="color:#c084fc;">AND</span> c1.id_cliente &lt; c2.id_cliente;</code></pre>
+                <p style="color: #94a3b8; font-size: 0.8rem; margin-top: 0.5rem;">
+                    <strong>¿Por qué INNER JOIN?</strong> Self-join: compara la tabla consigo misma. Solo muestra pares donde coinciden ambos apellidos.<br>
+                    <strong>¿Por qué separar apellidos?</strong> Con un solo campo <code>nombre</code>, habría que usar <code>LIKE</code> o <code>SPLIT_PART</code> — lento, frágil e impreciso.
+                </p>
+            </div>
+
+            <!-- Query 8 -->
+            <div class="diagram-box" style="border-left: 4px solid #22c55e;">
+                <h3 style="color: #6ee7b7; font-size: 1rem; margin-bottom: 0.2rem;">8. Historial completo de un vehículo — INNER JOIN múltiple</h3>
+                <p style="color: #64748b; font-size: 0.8rem; margin-bottom: 0.8rem;">Todo el historial de servicios de un vehículo con su dueño, modelo y fabricante.</p>
+                <pre style="background: #0f172a; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.85rem; line-height: 1.5;"><code><span style="color:#c084fc;">SELECT</span>
+    v.placa,
+    f.nombre <span style="color:#c084fc;">AS</span> fabricante,
+    mo.nombre <span style="color:#c084fc;">AS</span> modelo,
+    c.apellido_paterno || <span style="color:#fbbf24;">' '</span> || c.nombre <span style="color:#c084fc;">AS</span> propietario,
+    os.folio,
+    os.fecha_ingreso,
+    os.fecha_salida,
+    os.diagnostico,
+    os.estado
+<span style="color:#c084fc;">FROM</span> vehiculo v
+<span style="color:#22c55e;">INNER JOIN</span> cliente c         <span style="color:#c084fc;">ON</span> v.id_cliente = c.id_cliente
+<span style="color:#22c55e;">INNER JOIN</span> modelo mo         <span style="color:#c084fc;">ON</span> v.id_modelo = mo.id_modelo
+<span style="color:#22c55e;">INNER JOIN</span> fabricante f      <span style="color:#c084fc;">ON</span> mo.id_fabricante = f.id_fabricante
+<span style="color:#22c55e;">INNER JOIN</span> orden_servicio os <span style="color:#c084fc;">ON</span> os.id_vehiculo = v.id_vehiculo
+<span style="color:#c084fc;">WHERE</span> v.placa = <span style="color:#fbbf24;">'ABC1234'</span>
+<span style="color:#c084fc;">ORDER BY</span> os.fecha_ingreso <span style="color:#c084fc;">DESC</span>;</code></pre>
+                <p style="color: #94a3b8; font-size: 0.8rem; margin-top: 0.5rem;">
+                    <strong>¿Por qué INNER JOIN?</strong> Todas las relaciones son obligatorias: un vehículo DEBE tener cliente, modelo y fabricante.
+                </p>
+            </div>
+
+            <!-- Query 9 -->
+            <div class="diagram-box" style="border-left: 4px solid #3b82f6;">
+                <h3 style="color: #93c5fd; font-size: 1rem; margin-bottom: 0.2rem;">9. Modelos SIN vehículos registrados — LEFT JOIN</h3>
+                <p style="color: #64748b; font-size: 0.8rem; margin-bottom: 0.8rem;">Modelos en catálogo que ningún cliente ha registrado.</p>
+                <pre style="background: #0f172a; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.85rem; line-height: 1.5;"><code><span style="color:#c084fc;">SELECT</span>
+    f.nombre <span style="color:#c084fc;">AS</span> fabricante,
+    m.nombre <span style="color:#c084fc;">AS</span> modelo
+<span style="color:#c084fc;">FROM</span> modelo m
+<span style="color:#22c55e;">INNER JOIN</span> fabricante f <span style="color:#c084fc;">ON</span> m.id_fabricante = f.id_fabricante
+<span style="color:#3b82f6;">LEFT JOIN</span> vehiculo v   <span style="color:#c084fc;">ON</span> v.id_modelo = m.id_modelo
+<span style="color:#c084fc;">WHERE</span> v.id_vehiculo <span style="color:#c084fc;">IS NULL</span>
+<span style="color:#c084fc;">ORDER BY</span> f.nombre, m.nombre;</code></pre>
+                <p style="color: #94a3b8; font-size: 0.8rem; margin-top: 0.5rem;">
+                    <strong>¿Por qué LEFT JOIN en vehiculo?</strong> Queremos TODOS los modelos, y el <code>IS NULL</code> filtra los que no tienen vehículos. El INNER con fabricante es porque todo modelo DEBE tener fabricante.
+                </p>
+            </div>
+
+            <!-- Query 10 -->
+            <div class="diagram-box" style="border-left: 4px solid #22c55e;">
+                <h3 style="color: #6ee7b7; font-size: 1rem; margin-bottom: 0.2rem;">10. Reporte: total facturado por cliente — INNER JOIN + GROUP BY</h3>
+                <p style="color: #64748b; font-size: 0.8rem; margin-bottom: 0.8rem;">Cuánto ha gastado cada cliente, ordenado por apellido. Demuestra por qué costo_total es innecesario.</p>
+                <pre style="background: #0f172a; color: #e2e8f0; padding: 1rem; border-radius: 8px; overflow-x: auto; font-size: 0.85rem; line-height: 1.5;"><code><span style="color:#c084fc;">SELECT</span>
+    c.apellido_paterno,
+    c.apellido_materno,
+    c.nombre,
+    <span style="color:#c084fc;">COUNT</span>(<span style="color:#c084fc;">DISTINCT</span> os.id_orden) <span style="color:#c084fc;">AS</span> total_ordenes,
+    <span style="color:#c084fc;">SUM</span>(d.cantidad * d.precio)  <span style="color:#c084fc;">AS</span> total_facturado
+<span style="color:#c084fc;">FROM</span> cliente c
+<span style="color:#22c55e;">INNER JOIN</span> vehiculo v         <span style="color:#c084fc;">ON</span> v.id_cliente = c.id_cliente
+<span style="color:#22c55e;">INNER JOIN</span> orden_servicio os  <span style="color:#c084fc;">ON</span> os.id_vehiculo = v.id_vehiculo
+<span style="color:#22c55e;">INNER JOIN</span> detalle_orden d    <span style="color:#c084fc;">ON</span> d.id_orden = os.id_orden
+<span style="color:#c084fc;">GROUP BY</span> c.id_cliente, c.apellido_paterno, c.apellido_materno, c.nombre
+<span style="color:#c084fc;">ORDER BY</span> c.apellido_paterno, c.apellido_materno;</code></pre>
+                <p style="color: #94a3b8; font-size: 0.8rem; margin-top: 0.5rem;">
+                    <strong>¿Por qué INNER JOIN?</strong> Solo clientes con órdenes que tienen refacciones. Sin datos = sin factura.<br>
+                    <strong>¿Por qué no necesitas <code>costo_total</code>?</strong> El <code>SUM(cantidad * precio)</code> lo calcula al vuelo, siempre actualizado.<br>
+                    <strong>Apellidos:</strong> El <code>ORDER BY apellido_paterno, apellido_materno</code> da orden alfabético real — imposible con un campo <code>nombre</code> mezclado.
+                </p>
+            </div>
+
+            <!-- Resumen INNER vs LEFT -->
+            <div class="notes" style="margin-top: 1.5rem; border-left: 4px solid #67e8f9;">
+                <h3 style="color: #67e8f9;">¿Cuándo usar cada JOIN?</h3>
+                <ul>
+                    <li><span style="color: #22c55e; font-weight: 700;">INNER JOIN</span> — Cuando <strong>ambas tablas DEBEN tener datos</strong>. Si no hay coincidencia, la fila NO aparece. Ideal para relaciones obligatorias (vehículo→modelo, detalle→refacción).</li>
+                    <li><span style="color: #3b82f6; font-weight: 700;">LEFT JOIN</span> — Cuando quieres <strong>TODOS los registros de la tabla izquierda</strong>, aunque no tengan coincidencia en la derecha. Ideal para buscar <em>"qué NO tiene relación"</em> (clientes sin vehículos, refacciones sin uso, mecánicos ociosos).</li>
+                    <li><span style="color: #fbbf24; font-weight: 700;">Regla simple</span> — ¿Buscas lo que SÍ existe en ambos lados? → <strong>INNER</strong>. ¿Buscas lo que FALTA en un lado? → <strong>LEFT + IS NULL</strong>.</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        mermaid.initialize({
+            startOnLoad: true,
+            theme: 'dark',
+            themeVariables: {
+                primaryColor: '#334155',
+                primaryTextColor: '#e2e8f0',
+                primaryBorderColor: '#475569',
+                lineColor: '#64748b',
+                secondaryColor: '#1e293b',
+                tertiaryColor: '#0f172a',
+                edgeLabelBackground: '#1e293b'
+            },
+            er: {
+                layoutDirection: 'TB',
+                minEntityWidth: 160,
+                entityPadding: 15,
+                useMaxWidth: true
+            }
+        });
+    </script>
+</body>
+</html>

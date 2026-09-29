@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Revisión de Base de Datos — Taller Mecánico</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.6;
+            padding: 2rem;
+        }
+        .container { max-width: 960px; margin: 0 auto; }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #f97316, #ef4444);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .subtitle {
+            color: #94a3b8;
+            font-size: 0.95rem;
+            margin-bottom: 2.5rem;
+            border-bottom: 1px solid #1e293b;
+            padding-bottom: 1.5rem;
+        }
+
+        .section {
+            margin-bottom: 2.5rem;
+        }
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+        }
+        .section-title .icon {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1rem;
+            flex-shrink: 0;
+        }
+        .critical .icon { background: #7f1d1d; color: #fca5a5; }
+        .critical .section-title { color: #fca5a5; }
+        .design .icon { background: #78350f; color: #fcd34d; }
+        .design .section-title { color: #fcd34d; }
+        .minor .icon { background: #1e3a5f; color: #93c5fd; }
+        .minor .section-title { color: #93c5fd; }
+
+        .card {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 1.2rem 1.4rem;
+            margin-bottom: 0.8rem;
+            border-left: 4px solid;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+        }
+        .card:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+        .critical .card { border-left-color: #ef4444; }
+        .design .card { border-left-color: #f59e0b; }
+        .minor .card { border-left-color: #3b82f6; }
+
+        .card-number {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 0.3rem;
+        }
+        .critical .card-number { color: #f87171; }
+        .design .card-number { color: #fbbf24; }
+        .minor .card-number { color: #60a5fa; }
+
+        .card h3 {
+            font-size: 1.05rem;
+            font-weight: 600;
+            color: #f1f5f9;
+            margin-bottom: 0.4rem;
+        }
+        .card p {
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+        .card code {
+            background: #0f172a;
+            color: #67e8f9;
+            padding: 0.15em 0.45em;
+            border-radius: 4px;
+            font-size: 0.85em;
+            font-family: 'SF Mono', 'Fira Code', monospace;
+        }
+        .fix {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.3rem;
+            margin-top: 0.5rem;
+            background: #064e3b;
+            color: #6ee7b7;
+            padding: 0.3em 0.7em;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            font-weight: 600;
+        }
+        .fix::before { content: "✓ "; }
+
+        /* Tabla resumen */
+        .summary-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: #1e293b;
+            border-radius: 12px;
+            overflow: hidden;
+            margin-top: 1rem;
+        }
+        .summary-table th {
+            background: #334155;
+            padding: 0.8rem 1.2rem;
+            text-align: left;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #94a3b8;
+        }
+        .summary-table td {
+            padding: 0.75rem 1.2rem;
+            border-top: 1px solid #2d3a4f;
+            font-size: 0.9rem;
+        }
+        .summary-table tr:hover td { background: #253349; }
+        .badge-bad {
+            background: #7f1d1d;
+            color: #fca5a5;
+            padding: 0.2em 0.6em;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .badge-good {
+            background: #064e3b;
+            color: #6ee7b7;
+            padding: 0.2em 0.6em;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        .arrow { color: #94a3b8; margin: 0 0.3rem; }
+
+        .footer {
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #1e293b;
+            text-align: center;
+            color: #475569;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Revisión de Base de Datos</h1>
+        <p class="subtitle">Taller Mecánico — Análisis de diseño y relaciones</p>
+
+        <!-- CRÍTICOS -->
+        <div class="section critical">
+            <div class="section-title">
+                <span class="icon">🔴</span>
+                Problemas Críticos
+            </div>
+
+            <div class="card">
+                <div class="card-number">Problema #1</div>
+                <h3><code>cliente → vehiculo</code> con CASCADE</h3>
+                <p>Si borras un cliente, se eliminan <strong>todos sus vehículos</strong> en cascada, y las órdenes de servicio quedan con <code>id_vehiculo = NULL</code>. Pierdes historial completo de servicios.</p>
+                <div class="fix">Cambiar a RESTRICT</div>
+            </div>
+
+            <div class="card">
+                <div class="card-number">Problema #2</div>
+                <h3><code>vehiculo → orden_servicio</code> con SET NULL</h3>
+                <p>Si se borra un vehículo, las órdenes quedan huérfanas sin saber a qué vehículo pertenecían. Se pierde trazabilidad del servicio.</p>
+                <div class="fix">Cambiar a RESTRICT</div>
+            </div>
+
+            <div class="card">
+                <div class="card-number">Problema #3</div>
+                <h3>Un solo mecánico por orden de servicio</h3>
+                <p><code>orden_servicio.id_mecanico</code> limita a un mecánico por servicio. En la realidad, varios mecánicos pueden participar en un mismo trabajo.</p>
+                <div class="fix">Crear tabla intermedia mecanico_orden (id_orden, id_mecanico, rol)</div>
+            </div>
+        </div>
+
+        <!-- DISEÑO -->
+        <div class="section design">
+            <div class="section-title">
+                <span class="icon">🟡</span>
+                Problemas de Diseño
+            </div>
+
+            <div class="card">
+                <div class="card-number">Problema #4</div>
+                <h3><code>costo_total</code> en <code>orden_servicio</code></h3>
+                <p>Es un dato calculable: <code>SUM(cantidad × precio)</code> de <code>detalle_orden</code>. Tenerlo desnormalizado causa inconsistencias si no se actualiza con triggers.</p>
+                <div class="fix">Calcularlo con una vista o eliminarlo</div>
+            </div>
+
+            <div class="card">
+                <div class="card-number">Problema #5</div>
+                <h3><code>especialidad VARCHAR(20)</code> en mecánico</h3>
+                <p>Un mecánico puede tener varias especialidades y 20 caracteres es muy corto. No permite registrar perfiles completos.</p>
+                <div class="fix">Tabla especialidad + tabla intermedia, o al menos VARCHAR(100)</div>
+            </div>
+
+            <div class="card">
+                <div class="card-number">Problema #6</div>
+                <h3><code>estado VARCHAR(20)</code> sin restricción</h3>
+                <p>Texto libre invita errores de consistencia: "Pendiente" vs "pendiente" vs "PENDIENTE". No hay validación de valores permitidos.</p>
+                <div class="fix">Usar ENUM o tabla catálogo estado_orden</div>
+            </div>
+
+            <div class="card">
+                <div class="card-number">Problema #7</div>
+                <h3>Falta fecha de salida/entrega</h3>
+                <p>En <code>orden_servicio</code> solo existe <code>fecha_ingreso</code>. No hay forma de saber cuándo se terminó o entregó el servicio.</p>
+                <div class="fix">Agregar fecha_salida TIMESTAMPTZ</div>
+            </div>
+        </div>
+
+        <!-- MENORES -->
+        <div class="section minor">
+            <div class="section-title">
+                <span class="icon">🔵</span>
+                Problemas Menores
+            </div>
+
+            <div class="card">
+                <div class="card-number">Problema #8</div>
+                <h3><code>kilometraje BIGINT</code> — tipo excesivo</h3>
+                <p>Un <code>INTEGER</code> soporta hasta ~2.1 mil millones, más que suficiente para kilómetros. <code>BIGINT</code> desperdicia espacio.</p>
+                <div class="fix">Cambiar a INTEGER</div>
+            </div>
+
+            <div class="card">
+                <div class="card-number">Problema #9</div>
+                <h3><code>placa VARCHAR(7)</code> — demasiado corto</h3>
+                <p>Placas mexicanas estándar caben, pero placas de motocicleta, diplomáticas o extranjeras no. Limita la flexibilidad.</p>
+                <div class="fix">Cambiar a VARCHAR(15)</div>
+            </div>
+
+            <div class="card">
+                <div class="card-number">Problema #10</div>
+                <h3>Faltan índices en columnas de búsqueda</h3>
+                <p>Columnas como <code>placa</code>, <code>folio</code>, <code>correo</code> y <code>codigo_p</code> se buscan frecuentemente pero no tienen índice.</p>
+                <div class="fix">Crear índices en esas columnas</div>
+            </div>
+
+            <div class="card">
+                <div class="card-number">Problema #11</div>
+                <h3>PK compuesta en <code>detalle_orden</code></h3>
+                <p>La PK <code>(id_orden, id_refaccion)</code> impide agregar la misma refacción dos veces con diferente precio en la misma orden.</p>
+                <div class="fix">Agregar id_detalle como PK independiente</div>
+            </div>
+        </div>
+
+        <!-- TABLA RESUMEN -->
+        <div class="section">
+            <div class="section-title" style="color: #e2e8f0;">
+                <span class="icon" style="background: #334155; color: #e2e8f0;">📋</span>
+                Resumen de Correcciones en Relaciones
+            </div>
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th>Relación</th>
+                        <th>Actual</th>
+                        <th></th>
+                        <th>Correcto</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>cliente → vehiculo</code></td>
+                        <td><span class="badge-bad">CASCADE</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="badge-good">RESTRICT</span></td>
+                    </tr>
+                    <tr>
+                        <td><code>vehiculo → orden_servicio</code></td>
+                        <td><span class="badge-bad">SET NULL</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="badge-good">RESTRICT</span></td>
+                    </tr>
+                    <tr>
+                        <td><code>mecanico → orden_servicio</code></td>
+                        <td><span class="badge-bad">FK directa</span></td>
+                        <td class="arrow">→</td>
+                        <td><span class="badge-good">Tabla intermedia</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="footer">
+            Revisión generada — Septiembre 2026
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,840 @@
+{
+  "tareas": [
+    {
+      "id": 1,
+      "asignatura_clave": "etica",
+      "asignatura": "Ética y Legislación en Tecnologías de la Información",
+      "maestro": "Mirian Magaly Canche Caamal",
+      "titulo": "Actividad de reflexión",
+      "descripcion": "Preguntas conceptuales sobre moral, valores, principios, dilemas éticos y desafíos en TICs. Análisis de caso sobre plagio académico.",
+      "contenido": [
+        {
+          "tipo": "titulo",
+          "texto": "Actividad de reflexión"
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "Contesta las siguientes preguntas"
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "¿Qué es Moral?"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "La moral es el conjunto de normas, costumbres y valores que una sociedad o un individuo acepta como guía de conducta. Se refiere a lo que se considera correcto o incorrecto dentro de un contexto social y cultural determinado. La moral orienta el comportamiento humano y permite distinguir entre el bien y el mal, regulando las acciones de las personas en su convivencia diaria. A diferencia de la ética, que reflexiona de manera filosófica sobre la moral, esta última se vive y se practica de forma cotidiana."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "¿Qué son los Valores?"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Los valores son cualidades o principios que orientan el comportamiento de las personas y les permiten actuar de acuerdo con lo que consideran correcto, deseable o importante. Son convicciones profundas que guían las decisiones y acciones del individuo. Algunos ejemplos son la honestidad, la responsabilidad, el respeto, la justicia, la solidaridad y la lealtad. Los valores se adquieren a través de la familia, la educación y la experiencia social, y pueden variar entre culturas, aunque existen valores universales reconocidos por la mayoría de las sociedades."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "¿Qué son los Principios?"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Los principios son reglas o fundamentos éticos de carácter universal que sirven como base para el comportamiento moral de las personas. A diferencia de los valores, que son más personales y subjetivos, los principios tienden a ser normas generales aceptadas ampliamente. Por ejemplo, el principio de no hacer daño, el principio de justicia o el principio de autonomía. En el ámbito profesional, los principios éticos establecen los límites de lo aceptable y guían la toma de decisiones, especialmente cuando surgen conflictos entre intereses personales y colectivos."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "¿Qué son los Dilemas éticos?"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Un dilema ético es una situación en la que una persona debe elegir entre dos o más opciones que involucran principios o valores morales en conflicto, donde ninguna alternativa es completamente satisfactoria. En estos casos, cualquier decisión implica sacrificar un valor en favor de otro. Los dilemas éticos son comunes en la vida profesional y personal, y no tienen una respuesta única o sencilla. Requieren un análisis cuidadoso de las consecuencias, los principios involucrados y el contexto de la situación para tomar la decisión más justificable."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "¿Qué desafíos existen en la Ética para el desarrollo y uso de las TICs?"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "El desarrollo y uso de las Tecnologías de la Información y Comunicación (TICs) plantea múltiples desafíos éticos. Entre los más relevantes se encuentran: la privacidad de datos personales y la vigilancia digital; la brecha digital y la desigualdad en el acceso a la tecnología; la propiedad intelectual y el plagio facilitado por internet; la desinformación y las noticias falsas que se propagan por redes sociales; el uso de inteligencia artificial y los sesgos algorítmicos; la ciberseguridad y la responsabilidad ante ataques informáticos; y el impacto ambiental de la industria tecnológica. Estos desafíos exigen que los profesionales de TI actúen con responsabilidad, transparencia y respeto por los derechos de los usuarios."
+        },
+        {
+          "tipo": "titulo",
+          "texto": "Análisis del caso"
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "Situación"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Una estudiante descubre que su mejor amiga copió una parte importante de un trabajo que debía realizar individualmente. La profesora pregunta al grupo si alguien sabe qué ocurrió. La estudiante sabe que decir la verdad podría ocasionar una sanción para su amiga, pero también considera injusto que otras personas hayan realizado el trabajo por sí mismas mientras su amiga obtiene la misma calificación."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "1. ¿Qué valores están presentes en la situación?"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "En esta situación están presentes varios valores en tensión: la honestidad (decir la verdad sobre lo ocurrido), la lealtad y la amistad (proteger a su amiga), la justicia (que todos sean evaluados de forma equitativa), la responsabilidad (asumir las consecuencias de los propios actos) y la integridad académica (respetar las normas del trabajo individual)."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "2. ¿Qué principios podrían estar involucrados?"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Los principios involucrados incluyen: el principio de justicia, ya que todos los estudiantes merecen ser evaluados bajo las mismas condiciones; el principio de honestidad, que implica actuar con verdad; el principio de no hacer daño, pues cualquier decisión puede afectar a la amiga o a los demás compañeros; y el principio de responsabilidad individual, que sostiene que cada persona debe responder por sus actos."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "3. ¿Cuál sería el conflicto moral?"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "El conflicto moral radica en la tensión entre la lealtad hacia la amiga y el deber de ser honesta y justa. La estudiante se debate entre proteger a alguien cercano emocionalmente y hacer lo correcto desde el punto de vista ético, sabiendo que callar implica ser cómplice de una injusticia hacia sus compañeros que sí hicieron el trabajo por cuenta propia."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "4. ¿Consideras que existe un dilema ético? ¿Por qué?"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Sí, existe un dilema ético porque la estudiante debe elegir entre dos opciones moralmente válidas pero incompatibles: ser leal a su amiga (un valor importante en las relaciones personales) o ser honesta y justa con el resto del grupo (un valor fundamental en el ámbito académico). Ambas opciones tienen consecuencias significativas y ninguna es completamente satisfactoria, lo que constituye la esencia de un dilema ético."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "5. ¿Qué alternativas tiene la estudiante?"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "La estudiante tiene varias alternativas: a) Hablar directamente con su amiga en privado y pedirle que confiese ante la profesora por cuenta propia. b) Informar a la profesora sobre la situación. c) Guardar silencio y no decir nada. d) Hablar con la profesora de manera anónima o confidencial. Cada alternativa tiene implicaciones diferentes tanto para la relación de amistad como para la justicia académica."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "6. ¿Qué consecuencias podría tener cada alternativa?"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Si habla con su amiga en privado, podría lograr que ella misma asuma la responsabilidad, preservando la amistad y la justicia. Si informa a la profesora, se hace justicia pero puede perder la amistad. Si guarda silencio, mantiene la amistad pero se convierte en cómplice de la deshonestidad y la injusticia hacia los demás. Si lo hace de forma anónima, puede lograr justicia minimizando el impacto en su relación, aunque podría sentirse deshonesta por no dar la cara."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "7. ¿Qué decisión tomarías tú?"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Personalmente, optaría por hablar primero con mi amiga en privado. Le explicaría que lo que hizo no es correcto y le daría la oportunidad de confesarlo ella misma ante la profesora. Creo que una verdadera amistad se basa también en la honestidad y en ayudar al otro a hacer lo correcto. Si mi amiga se niega a actuar, entonces consideraría informar a la profesora, porque permitir una injusticia va en contra de mis valores."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "8. ¿Cómo justificarías éticamente tu decisión?"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Mi decisión se justifica éticamente desde múltiples perspectivas. Desde la ética de la virtud, actúo buscando ser una persona íntegra y justa. Desde el principio de justicia, busco que todos los estudiantes sean tratados equitativamente. Desde la responsabilidad, no me convierto en cómplice de un acto deshonesto. Además, al dar primero la oportunidad a mi amiga de corregir su error, respeto su autonomía y le ofrezco la posibilidad de actuar con dignidad. La verdadera amistad no consiste en encubrir errores, sino en apoyar al otro para que sea mejor persona."
+        }
+      ],
+      "fecha_creacion": "2026-09-09",
+      "fecha_entrega": null,
+      "estado": "en_progreso",
+      "archivo_generado": "/Users/jesusguadalupecanulcua/developer/tarea/entregas/etica_1_Actividad_de_reflexión.docx"
+    },
+    {
+      "id": 2,
+      "asignatura_clave": "etica",
+      "asignatura": "Ética y Legislación en Tecnologías de la Información",
+      "maestro": "Mirian Magaly Canche Caamal",
+      "titulo": "Reglamento para una empresa de Desarrollo de Software",
+      "descripcion": "Crear un reglamento individual por cada integrante del equipo (Jesús, Brando, Brandon) para una empresa de desarrollo de software, cubriendo empleados, usuarios y desarrolladores. Luego unificar los tres reglamentos y analizar qué hizo falta, qué está de más y qué es contradictorio.",
+      "contenido": [
+        {
+          "tipo": "titulo",
+          "texto": "Reglamento para una Empresa de Desarrollo de Software"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Equipo: Jesús Guadalupe Canul, Brando Cocom Pech Bryan Alberto, Brandon Andrey Tun Cauich"
+        },
+        {
+          "tipo": "titulo",
+          "texto": "Reglamento de Jesús Guadalupe Canul"
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "Sección I — Empleados"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 1. Todo empleado deberá cumplir con un horario laboral de 8 horas diarias, respetando los horarios de entrada y salida establecidos por la empresa."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 2. Los empleados están obligados a mantener la confidencialidad de la información interna de la empresa, proyectos en desarrollo y datos de los clientes."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 3. Se prohíbe el uso de recursos tecnológicos de la empresa para fines personales durante el horario laboral."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 4. Todo empleado deberá participar en las capacitaciones programadas por la empresa para mantenerse actualizado en tecnologías y buenas prácticas."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 5. El incumplimiento reiterado de las normas será motivo de sanciones que pueden ir desde amonestaciones escritas hasta la rescisión del contrato."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "Sección II — Usuarios"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 6. Los usuarios deberán utilizar el software únicamente para los fines establecidos en el contrato de licencia o términos de uso."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 7. Queda prohibida la ingeniería inversa, descompilación o modificación no autorizada del software proporcionado."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 8. Los usuarios son responsables de mantener la seguridad de sus credenciales de acceso y no compartirlas con terceros."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 9. Cualquier vulnerabilidad o error detectado deberá ser reportado a la empresa a través de los canales oficiales de soporte."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 10. La empresa no se hace responsable por el uso indebido del software por parte del usuario."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "Sección III — Desarrolladores"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 11. Todo desarrollador deberá seguir los estándares de codificación y las convenciones de nombrado definidas por el equipo de arquitectura."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 12. El código fuente deberá documentarse de manera clara y se deberá utilizar un sistema de control de versiones (Git) para todos los proyectos."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 13. Los desarrolladores deberán realizar pruebas unitarias y de integración antes de enviar cualquier cambio al repositorio principal."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 14. Queda prohibido utilizar bibliotecas o frameworks con licencias incompatibles con los términos del proyecto sin autorización previa."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 15. Los desarrolladores deberán reportar el avance de sus tareas diariamente mediante las herramientas de gestión de proyectos establecidas."
+        },
+        {
+          "tipo": "titulo",
+          "texto": "Reglamento de Brando Cocom Pech Bryan Alberto"
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "Sección I — Empleados"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 1. Los empleados deberán portar identificación oficial de la empresa en todo momento dentro de las instalaciones."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 2. Se establece un código de vestimenta casual profesional; no se permite ropa con mensajes ofensivos o inapropiados."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 3. Todo empleado tiene derecho a un ambiente laboral libre de acoso, discriminación y violencia."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 4. Las faltas injustificadas se sancionarán con descuento proporcional del salario y, tras tres faltas consecutivas, se procederá a la rescisión del contrato."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 5. Los empleados podrán realizar trabajo remoto previa autorización de su jefe directo, cumpliendo con los entregables establecidos."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "Sección II — Usuarios"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 6. Los usuarios recibirán capacitación inicial gratuita sobre el uso del software adquirido."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 7. Los usuarios deberán aceptar los términos y condiciones antes de utilizar cualquier producto de la empresa."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 8. La empresa garantiza soporte técnico dentro de un plazo máximo de 48 horas hábiles tras recibir un reporte."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 9. Los datos personales de los usuarios serán tratados conforme a la Ley Federal de Protección de Datos Personales en Posesión de Particulares."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 10. Queda prohibido el uso del software para actividades ilícitas; la empresa se reserva el derecho de suspender el servicio en tales casos."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "Sección III — Desarrolladores"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 11. Los desarrolladores tendrán acceso exclusivo a los repositorios de los proyectos en los que están asignados."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 12. Toda funcionalidad nueva deberá pasar por un proceso de revisión de código (code review) antes de integrarse."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 13. Los desarrolladores deberán respetar los plazos de entrega acordados en la planificación de sprints."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 14. Se prohíbe el uso de credenciales hardcodeadas en el código fuente; se deberán usar variables de entorno o gestores de secretos."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 15. Los desarrolladores tienen la obligación de mantenerse actualizados mediante autoformación y participación en comunidades técnicas."
+        },
+        {
+          "tipo": "titulo",
+          "texto": "Reglamento de Brandon Andrey Tun Cauich"
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "Sección I — Empleados"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 1. Todo empleado firmará un contrato de confidencialidad (NDA) al momento de su contratación."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 2. Se otorgarán 15 días de vacaciones al año, más los días festivos oficiales establecidos por la ley."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 3. La empresa proporcionará el equipo de cómputo necesario para las labores del empleado; el uso personal del mismo queda bajo responsabilidad del trabajador."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 4. Queda estrictamente prohibido compartir información de la empresa en redes sociales sin autorización del departamento de comunicación."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 5. Los empleados deberán respetar la propiedad intelectual de la empresa; todo desarrollo realizado durante la relación laboral pertenece a la compañía."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "Sección II — Usuarios"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 6. Los usuarios podrán solicitar la eliminación de sus datos personales en cualquier momento, conforme al derecho de supresión."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 7. El software se entrega \"tal cual\" (as-is); la empresa no garantiza que esté libre de errores al 100%."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 8. Los usuarios no podrán redistribuir, revender ni sublicenciar el software sin autorización escrita de la empresa."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 9. La empresa se reserva el derecho de actualizar el software y modificar funcionalidades, notificando con al menos 30 días de anticipación."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 10. En caso de disputa, las partes se someterán a un proceso de mediación antes de recurrir a instancias legales."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "Sección III — Desarrolladores"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 11. Los desarrolladores deberán seguir la metodología ágil (Scrum) establecida por la empresa para la gestión de proyectos."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 12. Todo código deberá cumplir con los estándares de seguridad OWASP antes de ser desplegado en producción."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 13. Los desarrolladores no podrán instalar software no autorizado en los equipos de la empresa."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 14. Se realizarán evaluaciones de desempeño trimestrales para medir la productividad y calidad del código entregado."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 15. En caso de detección de malas prácticas de programación (como omitir pruebas o ignorar vulnerabilidades conocidas), se aplicarán sanciones progresivas."
+        },
+        {
+          "tipo": "titulo",
+          "texto": "Reglamento Unificado del Equipo"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "A continuación se presenta el reglamento unificado, resultado de integrar las propuestas de los tres integrantes, eliminando redundancias y armonizando las disposiciones."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "Sección I — Empleados"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 1. Todo empleado firmará un contrato de confidencialidad (NDA) al momento de su contratación y mantendrá la reserva de información interna, proyectos y datos de clientes durante y después de la relación laboral."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 2. El horario laboral será de 8 horas diarias. Se permite el trabajo remoto previa autorización del jefe directo, siempre que se cumplan los entregables."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 3. Los empleados deberán portar identificación oficial dentro de las instalaciones y mantener un código de vestimenta casual profesional."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 4. La empresa garantiza un ambiente laboral libre de acoso, discriminación y violencia. Cualquier conducta contraria será sancionada."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 5. La empresa proporcionará el equipo de cómputo necesario. Se prohíbe el uso de recursos tecnológicos de la empresa para fines personales durante el horario laboral."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 6. Los empleados deberán participar en las capacitaciones programadas para mantenerse actualizados."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 7. Queda prohibido compartir información de la empresa en redes sociales sin autorización del departamento de comunicación."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 8. Todo desarrollo realizado durante la relación laboral es propiedad intelectual de la empresa."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 9. Se otorgarán 15 días de vacaciones al año, más los días festivos oficiales."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 10. Las faltas injustificadas se sancionarán con descuento salarial proporcional. Tres faltas consecutivas injustificadas serán motivo de rescisión de contrato. El incumplimiento reiterado de normas se sancionará de forma progresiva."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "Sección II — Usuarios"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 11. Los usuarios deberán aceptar los términos y condiciones antes de utilizar cualquier producto de la empresa y utilizar el software únicamente para los fines establecidos."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 12. Queda prohibida la ingeniería inversa, descompilación, redistribución, reventa o sublicenciamiento del software sin autorización escrita."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 13. Los usuarios son responsables de la seguridad de sus credenciales de acceso y no deberán compartirlas con terceros."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 14. Los datos personales serán tratados conforme a la Ley Federal de Protección de Datos Personales. Los usuarios podrán solicitar la eliminación de sus datos en cualquier momento."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 15. Los usuarios recibirán capacitación inicial sobre el uso del software adquirido."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 16. Cualquier vulnerabilidad o error deberá reportarse por los canales oficiales de soporte. La empresa garantiza respuesta en un plazo máximo de 48 horas hábiles."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 17. La empresa se reserva el derecho de actualizar el software y modificar funcionalidades, notificando con al menos 30 días de anticipación."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 18. El uso del software para actividades ilícitas resultará en la suspensión inmediata del servicio."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 19. En caso de disputa, las partes se someterán a mediación antes de recurrir a instancias legales."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "Sección III — Desarrolladores"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 20. Los desarrolladores seguirán los estándares de codificación, convenciones de nombrado y la metodología ágil (Scrum) definidos por la empresa."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 21. Todo código deberá documentarse, versionarse con Git y cumplir con los estándares de seguridad OWASP antes de desplegarse."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 22. Se deberán realizar pruebas unitarias y de integración. Toda funcionalidad nueva pasará por revisión de código (code review) antes de integrarse."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 23. Los desarrolladores tendrán acceso exclusivo a los repositorios de los proyectos en los que están asignados."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 24. Se prohíbe el uso de bibliotecas con licencias incompatibles, credenciales hardcodeadas en el código y la instalación de software no autorizado."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 25. Los desarrolladores reportarán avances diariamente y respetarán los plazos de los sprints."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 26. Se realizarán evaluaciones de desempeño trimestrales. Las malas prácticas de programación (omitir pruebas, ignorar vulnerabilidades) se sancionarán de forma progresiva."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Artículo 27. Los desarrolladores tienen la obligación de mantenerse actualizados mediante autoformación, participación en comunidades técnicas y capacitaciones de la empresa."
+        },
+        {
+          "tipo": "titulo",
+          "texto": "Análisis Comparativo"
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "¿Qué hizo falta?"
+        },
+        {
+          "tipo": "lista",
+          "items": [
+            "Jesús: No incluyó reglas sobre vestimenta, identificación ni vacaciones para empleados. No mencionó protección de datos personales de usuarios ni capacitación inicial.",
+            "Brando: No estableció horario laboral específico ni políticas de propiedad intelectual para empleados. No incluyó estándares de seguridad (OWASP) para desarrolladores.",
+            "Brandon: No definió normas sobre ambiente laboral libre de acoso ni capacitaciones obligatorias para empleados. No mencionó soporte técnico con tiempos de respuesta para usuarios.",
+            "En general: Ninguno incluyó procedimientos de contratación/despido detallados, políticas de home office formales, ni un mecanismo claro de resolución de conflictos internos entre empleados."
+          ]
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "¿Qué está de más?"
+        },
+        {
+          "tipo": "lista",
+          "items": [
+            "La regla de Jesús sobre prohibir uso personal de recursos es muy restrictiva cuando Brando y Brandon permiten cierta flexibilidad (trabajo remoto, equipo bajo responsabilidad del empleado).",
+            "La cláusula 'as-is' de Brandon podría resultar excesiva para una empresa que también ofrece soporte técnico garantizado (como propone Brando con las 48 horas).",
+            "Tener tres secciones idénticas de estructura (empleados, usuarios, desarrolladores) por persona genera repetición innecesaria en el documento individual."
+          ]
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "¿Qué cosas son contradictorias?"
+        },
+        {
+          "tipo": "lista",
+          "items": [
+            "Jesús dice que la empresa NO se hace responsable del uso indebido del software, mientras que Brando dice que la empresa SUSPENDERÁ el servicio si hay uso ilícito. Esto implica distintos niveles de responsabilidad de la empresa.",
+            "Brandon dice que el software se entrega 'tal cual' sin garantía, pero Brando establece soporte técnico obligatorio en 48 horas. Si no hay garantía de funcionamiento, ¿por qué hay obligación de soporte?",
+            "Jesús prohíbe estrictamente el uso personal de recursos de la empresa, pero Brandon dice que el equipo proporcionado queda 'bajo responsabilidad del trabajador', lo que implica cierta libertad de uso.",
+            "Jesús exige reportes diarios de avance, mientras que Brandon habla de evaluaciones trimestrales, lo que puede generar confusión sobre la frecuencia real de seguimiento (el unificado los armoniza incluyendo ambos)."
+          ]
+        },
+        {
+          "tipo": "titulo",
+          "texto": "Elementos Fundamentales de la Ética en el Reglamento"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "A continuación se analiza cómo el reglamento unificado incorpora los cinco elementos fundamentales de la ética aplicada a las tecnologías de la información."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "1. Privacidad"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "La privacidad es el derecho de toda persona a controlar su información personal y decidir qué datos comparte, con quién y bajo qué condiciones. En el contexto del desarrollo de software, la privacidad implica proteger los datos de los usuarios contra accesos no autorizados, usos indebidos y exposiciones innecesarias. El reglamento unificado aborda este elemento en el Artículo 14, que establece el tratamiento de datos personales conforme a la Ley Federal de Protección de Datos Personales en Posesión de Particulares, y reconoce el derecho de los usuarios a solicitar la eliminación de sus datos. Asimismo, el Artículo 1 obliga a los empleados a firmar un NDA que protege la información confidencial de la empresa y sus clientes."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "2. Seguridad"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "La seguridad se refiere a las medidas técnicas y organizacionales para proteger los sistemas, datos e infraestructura contra amenazas, vulnerabilidades y ataques. En una empresa de desarrollo de software, garantizar la seguridad es una responsabilidad ética fundamental. El reglamento refleja este principio en el Artículo 21, que exige el cumplimiento de los estándares OWASP antes de desplegar código en producción; en el Artículo 24, que prohíbe credenciales hardcodeadas en el código fuente; en el Artículo 13, que responsabiliza a los usuarios de proteger sus credenciales de acceso; y en el Artículo 16, que establece canales de reporte de vulnerabilidades con tiempos de respuesta garantizados."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "3. Responsabilidad"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "La responsabilidad ética implica que cada actor (empleado, desarrollador, usuario) debe asumir las consecuencias de sus acciones y actuar con diligencia en el cumplimiento de sus obligaciones. El reglamento incorpora este principio transversalmente: el Artículo 10 establece sanciones progresivas por incumplimiento de normas; el Artículo 26 implementa evaluaciones de desempeño trimestrales para desarrolladores; el Artículo 22 exige pruebas y revisiones de código antes de integrar cambios; y el Artículo 18 advierte que el uso ilícito del software resultará en suspensión del servicio. La responsabilidad no es solo individual sino también corporativa, como lo refleja el compromiso de soporte técnico en 48 horas."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "4. Propiedad Intelectual"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "La propiedad intelectual protege las creaciones del intelecto humano, incluyendo el código fuente, diseños, algoritmos y documentación producidos en el ámbito del desarrollo de software. Respetar la propiedad intelectual es un deber ético que evita el plagio, la apropiación indebida y el uso no autorizado de creaciones ajenas. El reglamento aborda este tema en el Artículo 8, que declara que todo desarrollo realizado durante la relación laboral es propiedad de la empresa; en el Artículo 24, que prohíbe el uso de bibliotecas con licencias incompatibles; y en el Artículo 12, que impide a los usuarios redistribuir, revender o sublicenciar el software sin autorización escrita."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "5. Acceso Equitativo"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "El acceso equitativo se refiere al derecho de todas las personas a beneficiarse de las tecnologías de la información sin discriminación por motivos económicos, geográficos, de género, edad o capacidad. Una empresa ética de desarrollo de software debe procurar que sus productos sean accesibles e inclusivos. El reglamento refleja este principio en el Artículo 4, que garantiza un ambiente laboral libre de discriminación; en el Artículo 15, que ofrece capacitación inicial gratuita a los usuarios para que puedan aprovechar el software sin importar su nivel técnico previo; y en el Artículo 6, que obliga a los empleados a participar en capacitaciones continuas, asegurando que todo el equipo tenga las mismas oportunidades de crecimiento profesional. Además, la metodología ágil (Artículo 20) promueve la colaboración horizontal y la participación equitativa de todos los desarrolladores."
+        }
+      ],
+      "fecha_creacion": "2026-09-14",
+      "fecha_entrega": null,
+      "estado": "completada",
+      "archivo_generado": "/Users/jesusguadalupecanulcua/developer/tarea/entregas/etica_2_Reglamento_para_una_empresa_de.docx"
+    },
+    {
+      "id": 3,
+      "asignatura_clave": "bdnube",
+      "asignatura": "Base de Datos en la Nube",
+      "maestro": "Lizandro Israel Reyes Carrillo",
+      "titulo": "Actividad 1.2: Bases de Datos Relacionales en la Nube a Supabase",
+      "descripcion": "Foro de debate en equipo (Diego Solís, Jesús Canul, Yael Rodríguez). Aportación en 3 puntos: qué es una BD relacional en la nube, Supabase como herramienta de trabajo, y un caso de aplicación.",
+      "tipo": "foro",
+      "contenido": "Ver texto redactado para publicar en el canal de Teams.",
+      "fecha_creacion": "2026-09-15",
+      "fecha_entrega": null,
+      "estado": "completada",
+      "archivo_generado": null
+    },
+    {
+      "id": 4,
+      "asignatura_clave": "ia",
+      "asignatura": "Fundamentos de Inteligencia Artificial",
+      "maestro": "Ricardo Joel Perez Caliz",
+      "titulo": "Actividad 1: Investigación sobre IA",
+      "descripcion": "Investigar riesgos e implicaciones éticas y sociales de la IA, aplicaciones y casos de estudio, y qué son los LLM y su estructura.",
+      "contenido": [
+        {
+          "tipo": "titulo",
+          "texto": "Investigación sobre Inteligencia Artificial"
+        },
+        {
+          "tipo": "titulo",
+          "texto": "1. Riesgos e implicaciones éticas y sociales de la Inteligencia Artificial"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "La Inteligencia Artificial (IA) ha transformado múltiples sectores de la sociedad, desde la salud hasta la educación y el comercio. Sin embargo, su adopción masiva trae consigo una serie de riesgos e implicaciones éticas y sociales que deben ser analizados con detenimiento para garantizar un desarrollo tecnológico responsable."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "1.1 Sesgo algorítmico y discriminación"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Uno de los riesgos más significativos de la IA es el sesgo algorítmico. Los modelos de IA aprenden a partir de datos históricos que pueden contener prejuicios sociales, raciales o de género. Si estos sesgos no se detectan y corrigen, los sistemas de IA pueden perpetuar e incluso amplificar la discriminación existente. Por ejemplo, en 2018 se descubrió que una herramienta de reclutamiento basada en IA de una gran empresa tecnológica penalizaba sistemáticamente los currículos de mujeres, ya que fue entrenada con datos históricos de contrataciones donde predominaban candidatos masculinos."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "1.2 Privacidad y vigilancia masiva"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Los sistemas de IA, en particular los de reconocimiento facial y análisis de datos, plantean serias amenazas a la privacidad. Gobiernos y corporaciones pueden utilizar estas tecnologías para la vigilancia masiva de ciudadanos sin su consentimiento. Un ejemplo hipotético sería una ciudad que implementa cámaras con reconocimiento facial en todas las esquinas para \"prevenir el crimen\", pero que en la práctica monitorea los movimientos de activistas políticos y periodistas, vulnerando su derecho a la privacidad y la libertad de expresión."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "1.3 Desplazamiento laboral"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "La automatización impulsada por IA amenaza con desplazar a millones de trabajadores en sectores como manufactura, transporte, atención al cliente y hasta profesiones creativas. Si bien la tecnología también crea nuevos empleos, la transición no es inmediata y puede generar desigualdad económica. Ejemplo hipotético: una cadena de supermercados reemplaza al 80% de sus cajeros por sistemas de autopago con IA. Los empleados desplazados, en su mayoría personas sin estudios universitarios, no encuentran empleo equivalente y caen en situación de vulnerabilidad económica."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "1.4 Desinformación y deepfakes"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "La IA generativa permite crear contenido falso altamente realista, incluyendo videos, imágenes y audios manipulados conocidos como deepfakes. Esto representa un riesgo grave para la democracia y la confianza pública. Ejemplo hipotético: durante una campaña electoral, se difunde un video deepfake de un candidato haciendo declaraciones racistas. Aunque se demuestra que es falso, el daño a su reputación ya es irreversible y altera el resultado de las elecciones."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "1.5 Falta de transparencia y responsabilidad"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Muchos sistemas de IA funcionan como \"cajas negras\": toman decisiones sin que los usuarios o incluso los desarrolladores puedan explicar cómo llegaron a una conclusión. Esto genera problemas de rendición de cuentas. Si un sistema de IA médica diagnostica erróneamente a un paciente y este recibe un tratamiento inadecuado, ¿quién es responsable? ¿El hospital, el desarrollador del software, o el algoritmo mismo? La falta de transparencia dificulta asignar responsabilidades."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "1.6 Uso militar y armas autónomas"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "El desarrollo de armas autónomas controladas por IA plantea dilemas éticos profundos. Delegar a una máquina la decisión de usar fuerza letal sin intervención humana directa cuestiona los principios fundamentales del derecho internacional humanitario. Ejemplo hipotético: un dron militar autónomo identifica erróneamente a un grupo de civiles como combatientes enemigos y ejecuta un ataque sin supervisión humana, causando víctimas inocentes."
+        },
+        {
+          "tipo": "titulo",
+          "texto": "2. Aplicaciones y casos de estudio de Inteligencia Artificial"
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "2.1 Salud: diagnóstico médico asistido por IA"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "La IA ha demostrado ser una herramienta poderosa en el diagnóstico médico. Sistemas como los desarrollados por Google Health pueden detectar cáncer de mama en mamografías con mayor precisión que los radiólogos humanos. Estos modelos analizan miles de imágenes médicas y aprenden a identificar patrones sutiles que podrían pasar desapercibidos para el ojo humano. Su aplicación permite diagnósticos más tempranos y tratamientos más oportunos."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "2.2 Educación: tutoría personalizada"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Plataformas como Khan Academy han integrado IA para ofrecer experiencias de aprendizaje personalizadas. Su asistente Khanmigo, basado en modelos de lenguaje, actúa como tutor personal que se adapta al ritmo y estilo de aprendizaje de cada estudiante. Puede explicar conceptos de diferentes maneras, generar ejercicios adaptados al nivel del alumno y proporcionar retroalimentación inmediata, democratizando el acceso a educación de calidad."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "2.3 Agricultura: precisión y sostenibilidad"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "En la agricultura, la IA se utiliza para optimizar el uso de recursos y aumentar la productividad. Drones equipados con cámaras y sensores analizan cultivos mediante visión por computadora para detectar plagas, enfermedades o deficiencias nutricionales en etapas tempranas. Empresas como Blue River Technology desarrollaron sistemas que identifican malezas individualmente y aplican herbicida solo donde es necesario, reduciendo el uso de químicos hasta en un 90%."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "2.4 Transporte: vehículos autónomos"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Empresas como Waymo (filial de Alphabet) operan servicios de taxis autónomos en ciudades como Phoenix y San Francisco. Estos vehículos utilizan una combinación de sensores LiDAR, cámaras y modelos de IA para percibir su entorno, predecir el comportamiento de otros actores viales y tomar decisiones de conducción en tiempo real. El objetivo es reducir accidentes causados por error humano, que representan más del 90% de los siniestros viales."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "2.5 Finanzas: detección de fraude"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Las instituciones financieras emplean modelos de IA para detectar transacciones fraudulentas en tiempo real. Estos sistemas analizan patrones de gasto, ubicación geográfica, frecuencia de transacciones y otros factores para identificar actividades sospechosas. Visa, por ejemplo, utiliza IA para analizar más de 500 millones de transacciones diarias, lo que ha permitido prevenir fraudes por más de 25 mil millones de dólares anuales."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "2.6 Atención al cliente: chatbots inteligentes"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Empresas de todos los sectores implementan chatbots basados en IA para atender consultas de clientes las 24 horas del día. Estos sistemas pueden resolver preguntas frecuentes, procesar solicitudes y escalar casos complejos a agentes humanos. Bancos como BBVA y empresas de telecomunicaciones utilizan asistentes virtuales que comprenden lenguaje natural y mejoran continuamente a partir de las interacciones con los usuarios."
+        },
+        {
+          "tipo": "titulo",
+          "texto": "3. Modelos de Lenguaje Grande (LLM): qué son y su estructura"
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "3.1 Definición"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Los Modelos de Lenguaje Grande (LLM, por sus siglas en inglés: Large Language Models) son sistemas de inteligencia artificial diseñados para comprender, generar y manipular texto en lenguaje natural. Se denominan \"grandes\" por la enorme cantidad de parámetros que contienen (desde cientos de millones hasta billones) y por los vastos conjuntos de datos con los que son entrenados. Ejemplos prominentes incluyen GPT-4 de OpenAI, Claude de Anthropic, Gemini de Google y LLaMA de Meta."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "3.2 Arquitectura: el Transformer"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "La arquitectura fundamental de los LLM es el Transformer, presentado en 2017 por investigadores de Google en el artículo \"Attention Is All You Need\". A diferencia de arquitecturas anteriores como las redes recurrentes (RNN), el Transformer procesa todas las palabras de una secuencia simultáneamente en lugar de una por una, lo que permite un entrenamiento mucho más eficiente y la captura de relaciones a larga distancia en el texto."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "3.3 Componentes principales del Transformer"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "El Transformer se compone de los siguientes elementos clave:"
+        },
+        {
+          "tipo": "lista",
+          "items": [
+            "Tokenización: el texto de entrada se divide en unidades llamadas tokens (palabras, subpalabras o caracteres). Cada token se convierte en un vector numérico que el modelo puede procesar.",
+            "Embeddings: los tokens se transforman en representaciones vectoriales densas que capturan el significado semántico de las palabras. Palabras con significados similares tienen vectores cercanos en el espacio de embeddings.",
+            "Codificación posicional: dado que el Transformer procesa todos los tokens simultáneamente, se añade información sobre la posición de cada token en la secuencia para que el modelo entienda el orden de las palabras.",
+            "Mecanismo de atención (Self-Attention): es el componente central del Transformer. Permite que cada token \"preste atención\" a todos los demás tokens de la secuencia, determinando cuáles son más relevantes para interpretar su significado en contexto. Por ejemplo, en la frase \"El banco está cerca del río\", el mecanismo de atención ayuda al modelo a asociar \"banco\" con \"río\" y no con una institución financiera.",
+            "Capas Feed-Forward: después de la capa de atención, cada token pasa por una red neuronal feed-forward que transforma su representación, añadiendo capacidad de abstracción.",
+            "Normalización y conexiones residuales: técnicas que estabilizan el entrenamiento y permiten construir modelos con muchas capas sin que la información se degrade."
+          ]
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "3.4 Proceso de entrenamiento"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "El entrenamiento de un LLM se realiza generalmente en dos fases. La primera es el preentrenamiento, donde el modelo procesa enormes cantidades de texto (libros, artículos, páginas web) y aprende a predecir la siguiente palabra en una secuencia. Este proceso requiere miles de GPUs trabajando durante semanas o meses. La segunda fase es el ajuste fino (fine-tuning), donde el modelo preentrenado se especializa para tareas específicas, como seguir instrucciones o mantener conversaciones, utilizando conjuntos de datos más pequeños y curados. Adicionalmente, técnicas como RLHF (Reinforcement Learning from Human Feedback) permiten alinear el comportamiento del modelo con las preferencias y valores humanos."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "3.5 Capacidades y limitaciones"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Los LLM son capaces de realizar una amplia variedad de tareas: traducción de idiomas, resumen de textos, generación de código, respuesta a preguntas, análisis de sentimientos, redacción creativa, entre otras. Sin embargo, presentan limitaciones importantes: pueden generar información incorrecta pero convincente (alucinaciones), no tienen comprensión real del mundo, su conocimiento está limitado a los datos de entrenamiento, y pueden reproducir sesgos presentes en los datos con los que fueron entrenados. Por ello, es fundamental que los usuarios evalúen críticamente las respuestas generadas por estos modelos."
+        },
+        {
+          "tipo": "titulo",
+          "texto": "Conclusión"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "La Inteligencia Artificial representa una de las tecnologías más transformadoras de nuestra era. Sus aplicaciones abarcan prácticamente todos los sectores y prometen mejoras significativas en eficiencia, precisión y accesibilidad. Sin embargo, su desarrollo debe ir acompañado de una reflexión ética profunda que considere los riesgos de sesgo, privacidad, desplazamiento laboral y desinformación. Los Modelos de Lenguaje Grande, como caso particular de la IA, ilustran tanto el potencial como los desafíos de esta tecnología: son herramientas extraordinariamente capaces, pero requieren un uso responsable, crítico e informado. Como futuros profesionales de tecnologías de la información, tenemos la responsabilidad de impulsar una IA que sea inclusiva, transparente y que respete los derechos fundamentales de las personas."
+        },
+        {
+          "tipo": "titulo",
+          "texto": "Referencias"
+        },
+        {
+          "tipo": "lista",
+          "items": [
+            "Vaswani, A. et al. (2017). Attention Is All You Need. Advances in Neural Information Processing Systems.",
+            "Russell, S. y Norvig, P. (2021). Artificial Intelligence: A Modern Approach. 4th Edition. Pearson.",
+            "UNESCO (2021). Recomendación sobre la Ética de la Inteligencia Artificial.",
+            "OpenAI (2023). GPT-4 Technical Report.",
+            "European Commission (2021). Proposal for a Regulation on Artificial Intelligence (AI Act)."
+          ]
+        }
+      ],
+      "fecha_creacion": "2026-09-25",
+      "fecha_entrega": "2026-09-25",
+      "estado": "en_progreso",
+      "archivo_generado": "/Users/jesusguadalupecanulcua/developer/tarea/entregas/ia_4_Actividad_1__Investigación_sob.docx"
+    },
+    {
+      "id": 5,
+      "asignatura_clave": "etica",
+      "asignatura": "Ética y Legislación en Tecnologías de la Información",
+      "maestro": "Mirian Magaly Canche Caamal",
+      "titulo": "Estudio de caso y Carteles sobre Ciberacoso",
+      "descripcion": "Caso YosStop y Ainara Suárez. Documento con análisis ético, políticas, procedimiento y 3 carteles.",
+      "contenido": [],
+      "fecha_creacion": "2026-09-28",
+      "fecha_entrega": "2026-09-28",
+      "estado": "completada",
+      "archivo_generado": "entregas/etica y legislacion/tare canva /Actividad_Etica_Ciberacoso_YosStop_APA7.pdf"
+    }
+  ]
+}

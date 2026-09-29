@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Diagrama ER — Taller Mecánico</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.min.js"></script>
+    <style>
+        body { font-family: 'Segoe UI', sans-serif; background: #0f172a; color: #e2e8f0; padding: 2rem; margin: 0; }
+        .container { max-width: 1400px; margin: 0 auto; }
+        h1 { font-size: 1.8rem; color: #f97316; margin-bottom: 0.3rem; }
+        h2 { margin-top: 2rem; margin-bottom: 0.8rem; }
+        h2.bad { color: #fca5a5; }
+        h2.good { color: #6ee7b7; }
+        .box { background: #1e293b; border-radius: 12px; padding: 2rem; margin-bottom: 2rem; overflow-x: auto; }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Diagrama ER — Taller Mecánico</h1>
+
+    <h2 class="bad">ACTUAL (con errores)</h2>
+    <div class="box">
+        <pre class="mermaid">
+erDiagram
+    fabricante ||--o{ modelo : "RESTRICT"
+    modelo ||--o{ vehiculo : "RESTRICT"
+    cliente ||--o{ vehiculo : "CASCADE"
+    vehiculo ||--o{ orden_servicio : "SET NULL"
+    mecanico ||--o{ orden_servicio : "RESTRICT"
+    orden_servicio ||--o{ detalle_orden : "CASCADE"
+    refaccion ||--o{ detalle_orden : "RESTRICT"
+
+    fabricante {
+        BIGINT id_fabricante PK
+        VARCHAR nombre
+    }
+    modelo {
+        BIGINT id_modelo PK
+        VARCHAR nombre
+        BIGINT id_fabricante FK
+    }
+    vehiculo {
+        BIGINT id_vehiculo PK
+        VARCHAR placa
+        INTEGER anio_fabricacion
+        VARCHAR color
+        BIGINT id_cliente FK
+        BIGINT id_modelo FK
+    }
+    cliente {
+        BIGINT id_cliente PK
+        VARCHAR nombre
+        VARCHAR telefono
+        VARCHAR correo
+    }
+    orden_servicio {
+        BIGINT id_orden PK
+        VARCHAR folio
+        TIMESTAMPTZ fecha_ingreso
+        TEXT diagnostico
+        BIGINT kilometraje
+        NUMERIC costo_total
+        VARCHAR estado
+        BIGINT id_vehiculo FK
+        BIGINT id_mecanico FK
+    }
+    mecanico {
+        BIGINT id_mecanico PK
+        VARCHAR nombre
+        DATE fecha_ingreso
+        VARCHAR especialidad
+    }
+    detalle_orden {
+        BIGINT id_orden PK
+        BIGINT id_refaccion PK
+        INTEGER cantidad
+        NUMERIC precio
+    }
+    refaccion {
+        BIGINT id_refaccion PK
+        VARCHAR codigo_p
+        VARCHAR nombre
+        NUMERIC precio
+        INTEGER existencias
+    }
+        </pre>
+    </div>
+
+    <h2 class="good">CORREGIDO (propuesta)</h2>
+    <div class="box">
+        <pre class="mermaid">
+erDiagram
+    fabricante ||--o{ modelo : "RESTRICT"
+    modelo ||--o{ vehiculo : "RESTRICT"
+    cliente ||--o{ vehiculo : "RESTRICT"
+    vehiculo ||--o{ orden_servicio : "RESTRICT"
+    orden_servicio ||--o{ mecanico_orden : "CASCADE"
+    mecanico ||--o{ mecanico_orden : "RESTRICT"
+    mecanico ||--o{ mecanico_especialidad : "CASCADE"
+    especialidad ||--o{ mecanico_especialidad : "RESTRICT"
+    orden_servicio ||--o{ detalle_orden : "CASCADE"
+    refaccion ||--o{ detalle_orden : "RESTRICT"
+
+    fabricante {
+        BIGINT id_fabricante PK
+        VARCHAR nombre
+    }
+    modelo {
+        BIGINT id_modelo PK
+        VARCHAR nombre
+        BIGINT id_fabricante FK
+    }
+    vehiculo {
+        BIGINT id_vehiculo PK
+        VARCHAR placa UK
+        INTEGER anio_fabricacion
+        VARCHAR color
+        BIGINT id_cliente FK
+        BIGINT id_modelo FK
+    }
+    cliente {
+        BIGINT id_cliente PK
+        VARCHAR nombre
+        VARCHAR apellido_paterno
+        VARCHAR apellido_materno
+        VARCHAR telefono
+        VARCHAR correo UK
+    }
+    orden_servicio {
+        BIGINT id_orden PK
+        VARCHAR folio UK
+        TIMESTAMPTZ fecha_ingreso
+        TIMESTAMPTZ fecha_salida
+        TEXT diagnostico
+        INTEGER kilometraje
+        VARCHAR estado
+        BIGINT id_vehiculo FK
+    }
+    mecanico {
+        BIGINT id_mecanico PK
+        VARCHAR nombre
+        VARCHAR apellido_paterno
+        VARCHAR apellido_materno
+        DATE fecha_ingreso
+    }
+    especialidad {
+        BIGINT id_especialidad PK
+        VARCHAR nombre
+    }
+    mecanico_especialidad {
+        BIGINT id_mecanico FK
+        BIGINT id_especialidad FK
+    }
+    mecanico_orden {
+        BIGINT id_mecanico FK
+        BIGINT id_orden FK
+        VARCHAR rol
+    }
+    detalle_orden {
+        BIGINT id_detalle PK
+        BIGINT id_orden FK
+        BIGINT id_refaccion FK
+        INTEGER cantidad
+        NUMERIC precio
+    }
+    refaccion {
+        BIGINT id_refaccion PK
+        VARCHAR codigo_p UK
+        VARCHAR nombre
+        NUMERIC precio
+        INTEGER existencias
+    }
+        </pre>
+    </div>
+</div>
+
+<script>
+    mermaid.initialize({
+        startOnLoad: true,
+        theme: 'dark',
+        er: { layoutDirection: 'TB', useMaxWidth: true }
+    });
+</script>
+</body>
+</html>

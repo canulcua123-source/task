@@ -1,0 +1,38 @@
+{
+  "estudiante": {
+    "nombre": "Jesús Guadalupe Canul",
+    "carrera": "Tecnologías de la Información Innovación Digital",
+    "cuatrimestre": "7° Cuatrimestre",
+    "grupo": "A"
+  },
+  "escuela": {
+    "nombre": "Universidad Tecnológica Metropolitana",
+    "siglas": "UTM",
+    "logo": "assets/logo_utm.png"
+  },
+  "asignaturas": [
+    {
+      "nombre": "Ética y Legislación en Tecnologías de la Información",
+      "maestro": "Mirian Magaly Canche Caamal",
+      "clave": "etica"
+    },
+    {
+      "nombre": "Base de Datos en la Nube",
+      "maestro": "Lizandro Israel Reyes Carrillo",
+      "clave": "bdnube"
+    },
+    {
+      "nombre": "Fundamentos de Inteligencia Artificial",
+      "maestro": "Ricardo Joel Perez Caliz",
+      "clave": "ia"
+    }
+  ],
+  "formato": {
+    "fuente": "Arial",
+    "color_titulo": "003366",
+    "color_subtitulo": "003366",
+    "tamano_titulo": 22,
+    "tamano_subtitulo": 14,
+    "tamano_cuerpo": 12
+  }
+}
