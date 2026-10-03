@@ -142,6 +142,19 @@ def obtener_tarea(tarea_id):
     return None
 
 
+def actualizar_contenido(tarea_id, contenido):
+    """Actualiza el contenido de una tarea. Uso agéntico: permite corregir tras revisión."""
+    db = load_db()
+    for t in db["tareas"]:
+        if t["id"] == tarea_id:
+            t["contenido"] = contenido
+            save_db(db)
+            print(f"Tarea #{tarea_id}: contenido actualizado ({len(contenido)} secciones)")
+            return t
+    print(f"Tarea #{tarea_id} no encontrada.")
+    return None
+
+
 def resumen_tareas():
     """Devuelve un resumen para uso agéntico."""
     db = load_db()
@@ -584,39 +597,90 @@ def alertas_vencidas():
     return alertas
 
 
-def flujo_completo(tarea_id, subir_teams=False):
-    """Orquesta: generar doc → actualizar estado → opcionalmente subir a Teams."""
+def flujo_completo(tarea_id, subir_teams=False, criterios_review=None):
+    """Pipeline agéntico completo: PDF → Review → Organizar → Teams.
+
+    Retorna dict con resultado estructurado (para parsing agéntico).
+    """
+    import importlib
+    resultado = {"tarea_id": tarea_id, "pasos": [], "exito": False}
+
     tarea = obtener_tarea(tarea_id)
     if not tarea:
-        print(f"Tarea #{tarea_id} no encontrada.")
-        return None
+        resultado["error"] = f"Tarea #{tarea_id} no encontrada."
+        print(json.dumps(resultado, ensure_ascii=False))
+        return resultado
 
-    # Verificar que tenga contenido
     if not isinstance(tarea.get("contenido"), list) or not tarea["contenido"]:
-        print(f"Tarea #{tarea_id} no tiene contenido para generar.")
-        return None
+        resultado["error"] = f"Tarea #{tarea_id} no tiene contenido."
+        print(json.dumps(resultado, ensure_ascii=False))
+        return resultado
 
-    # Generar documento
-    ruta = generar_documento(tarea_id)
-    if not ruta:
-        return None
+    # Paso 1: Generar PDF
+    try:
+        generar_pdf = importlib.import_module("generar_pdf")
+        pdf_path = generar_pdf.generar_pdf_completo(tarea_id)
+        resultado["pasos"].append({"paso": "pdf", "estado": "ok", "archivo": pdf_path})
+    except Exception as e:
+        resultado["pasos"].append({"paso": "pdf", "estado": "error", "detalle": str(e)})
+        resultado["error"] = f"Fallo al generar PDF: {e}"
+        print(json.dumps(resultado, ensure_ascii=False))
+        return resultado
 
-    # Actualizar estado
-    actualizar_estado(tarea_id, "completada")
+    # Paso 2: Review de calidad
+    try:
+        revisor = importlib.import_module("revisor")
+        reporte = revisor.revisar_tarea(tarea_id, criterios_review)
+        revisor.imprimir_reporte(reporte)
+        resultado["pasos"].append({
+            "paso": "review",
+            "estado": "ok" if reporte["veredicto"] == "APROBADO" else "fallas",
+            "veredicto": reporte["veredicto"],
+            "resumen": reporte["resumen"],
+            "palabras": reporte["palabras"],
+        })
+        if reporte["veredicto"] != "APROBADO":
+            resultado["requiere_correccion"] = True
+            fallas = [c for c in reporte["checks"] if c["estado"] == "FALLA"]
+            resultado["fallas"] = fallas
+    except Exception as e:
+        resultado["pasos"].append({"paso": "review", "estado": "error", "detalle": str(e)})
 
-    # Subir a Teams si se pide y tiene datos de Teams
+    # Paso 3: Organizar en carpeta de asignatura
+    try:
+        organizar = importlib.import_module("organizar")
+        organizar.setup_carpetas()
+        organizar.mover_archivos()
+        resultado["pasos"].append({"paso": "organizar", "estado": "ok"})
+    except Exception as e:
+        resultado["pasos"].append({"paso": "organizar", "estado": "error", "detalle": str(e)})
+
+    # Paso 4: Marcar como completada
+    if not resultado.get("requiere_correccion"):
+        actualizar_estado(tarea_id, "completada")
+        resultado["pasos"].append({"paso": "estado", "estado": "ok", "nuevo": "completada"})
+
+    # Paso 5: Subir a Teams si se pide
     if subir_teams and tarea.get("class_id") and tarea.get("assignment_id"):
         try:
             from teams import subir_archivo_tarea, entregar_tarea
-            print(f"Subiendo a Teams...")
-            subir_archivo_tarea(tarea["class_id"], tarea["assignment_id"], ruta)
-            entregar_tarea(tarea["class_id"], tarea["assignment_id"])
-            actualizar_estado(tarea_id, "entregada")
-            print(f"Tarea #{tarea_id} entregada en Teams.")
+            tarea_actualizada = obtener_tarea(tarea_id)
+            ruta = tarea_actualizada.get("archivo_generado")
+            if ruta:
+                subir_archivo_tarea(tarea["class_id"], tarea["assignment_id"], ruta)
+                entregar_tarea(tarea["class_id"], tarea["assignment_id"])
+                actualizar_estado(tarea_id, "entregada")
+                resultado["pasos"].append({"paso": "teams", "estado": "ok"})
         except Exception as e:
-            print(f"Error al subir a Teams: {e}")
+            resultado["pasos"].append({"paso": "teams", "estado": "error", "detalle": str(e)})
 
-    return ruta
+    resultado["exito"] = not resultado.get("requiere_correccion", False)
+
+    # Output JSON para parsing agéntico
+    if "--json" in sys.argv:
+        print(json.dumps(resultado, ensure_ascii=False, indent=2))
+
+    return resultado
 
 
 # ─── CLI ──────────────────────────────────────────────────────
@@ -644,11 +708,14 @@ Uso:
 
     elif cmd == "resumen":
         r = resumen_tareas()
-        print(f"\nTotal: {r['total']} | Pendientes: {r['pendientes']} | En progreso: {r['en_progreso']} | Completadas: {r['completadas']} | Entregadas: {r['entregadas']}")
-        if r["proximas_entregas"]:
-            print("\nPróximas entregas:")
-            for e in r["proximas_entregas"]:
-                print(f"  #{e['id']} {e['titulo']} ({e['asignatura']}) — {e['fecha_entrega']}")
+        if "--json" in sys.argv:
+            print(json.dumps(r, ensure_ascii=False, indent=2))
+        else:
+            print(f"\nTotal: {r['total']} | Pendientes: {r['pendientes']} | En progreso: {r['en_progreso']} | Completadas: {r['completadas']} | Entregadas: {r['entregadas']}")
+            if r["proximas_entregas"]:
+                print("\nPróximas entregas:")
+                for e in r["proximas_entregas"]:
+                    print(f"  #{e['id']} {e['titulo']} ({e['asignatura']}) — {e['fecha_entrega']}")
 
     elif cmd == "agregar":
         if len(sys.argv) < 4:
@@ -686,7 +753,9 @@ Uso:
 
     elif cmd == "alertas":
         alertas = alertas_vencidas()
-        if not alertas:
+        if "--json" in sys.argv:
+            print(json.dumps(alertas, ensure_ascii=False, indent=2))
+        elif not alertas:
             print("No hay tareas vencidas ni próximas a vencer.")
         else:
             print(f"\n{'ID':<4} {'Días':<6} {'Entrega':<12} {'Asignatura':<20} Título")

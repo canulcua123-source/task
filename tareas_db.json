@@ -835,6 +835,421 @@
       "fecha_entrega": "2026-09-28",
       "estado": "completada",
       "archivo_generado": "entregas/etica y legislacion/tare canva /Actividad_Etica_Ciberacoso_YosStop_APA7.pdf"
+    },
+    {
+      "id": 6,
+      "asignatura_clave": "ia",
+      "asignatura": "Fundamentos de Inteligencia Artificial",
+      "maestro": "Ricardo Joel Perez Caliz",
+      "titulo": "Actividad 2: Matriz de Selección de Ramas y Métodos de la IA",
+      "descripcion": "Completar la matriz de diseño técnico para 3 problemas de desarrollo de software: moderación de texto (NLP), segmentación médica (CV) y control difuso de riego.",
+      "contenido": [
+        {
+          "tipo": "titulo",
+          "texto": "Actividad 2: Matriz de Selección de Ramas y Métodos de la IA"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Instrucciones: Completa la siguiente matriz de diseño técnico para cada uno de los 3 problemas de desarrollo de software planteados en la empresa. Justifica detalladamente tu elección."
+        },
+        {
+          "tipo": "titulo",
+          "texto": "Caso 2: Moderación de comentarios en plataforma de streaming"
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "Contexto / Problema del Mundo Real"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Una plataforma de streaming necesita moderar comentarios automatizando la detección de lenguaje tóxico, acoso o spam en texto en tiempo real."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "Rama de la IA a aplicar"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Procesamiento de Lenguaje Natural (NLP)."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "Técnica / Algoritmo específico"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Modelos Transformer (BERT / RoBERTa) fine-tuned para clasificación de texto."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "Justificación de Ingeniería"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Los modelos Transformer capturan contexto bidireccional y semántica profunda del lenguaje, superando ampliamente a los métodos clásicos como bag-of-words o TF-IDF en tareas de clasificación de texto con matices lingüísticos. BERT y RoBERTa son modelos pre-entrenados sobre grandes corpus de texto que pueden ser ajustados (fine-tuning) con datasets relativamente pequeños de comentarios etiquetados como tóxicos, spam o acoso. Su arquitectura de atención multi-cabeza les permite captar relaciones contextuales complejas, como el sarcasmo, el doble sentido o el acoso implícito, que un clasificador lineal o una red recurrente simple no detectarían. Además, la inferencia de estos modelos se ejecuta en milisegundos, lo que los hace aptos para moderación en tiempo real. Un enfoque basado en reglas (expresiones regulares, listas negras) sería demasiado frágil y fácil de evadir con variaciones ortográficas, mientras que un modelo de machine learning clásico (SVM, Naive Bayes) no alcanzaría la misma precisión en textos ambiguos."
+        },
+        {
+          "tipo": "titulo",
+          "texto": "Caso 3: Segmentación de microrroturas de ligamentos en imágenes de resonancia magnética"
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "Contexto / Problema del Mundo Real"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Una app médica necesita una API para identificar y segmentar automáticamente microrroturas de ligamentos en imágenes médicas de resonancia magnética."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "Rama de la IA a aplicar"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Visión por Computadora (Computer Vision)."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "Técnica / Algoritmo específico"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Red Neuronal Convolucional U-Net (segmentación semántica)."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "Justificación de Ingeniería"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "U-Net fue diseñada específicamente para la segmentación de imágenes biomédicas, donde el objetivo es delinear regiones de interés píxel a píxel. Su arquitectura encoder-decoder con skip connections permite que el modelo preserve los detalles finos de la imagen original mientras construye representaciones abstractas de alto nivel, lo que resulta esencial para detectar lesiones microscópicas en tejido blando como los ligamentos. Las técnicas clásicas de procesamiento de imagen (filtros de borde, umbralización, detección de contornos) no pueden aprender los patrones complejos que distinguen tejido dañado de tejido sano en una imagen de resonancia magnética, ya que estas diferencias son sutiles y dependen del contexto anatómico. Otras arquitecturas de deep learning como ResNet o VGG están diseñadas para clasificación de imagen completa (\"¿hay lesión o no?\") pero no para segmentación, es decir, no pueden indicar exactamente dónde está la microrrotura. U-Net, además, logra resultados sobresalientes con datasets de entrenamiento relativamente pequeños (cientos de imágenes anotadas), lo cual es crucial en el dominio médico donde los datos etiquetados son escasos y costosos de obtener."
+        },
+        {
+          "tipo": "titulo",
+          "texto": "Caso 4: Control de riego en invernadero automatizado con variables imprecisas"
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "Contexto / Problema del Mundo Real"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "El software de un invernadero automatizado debe regular la apertura de válvulas de riego basándose en variables imprecisas como \"humedad media-baja\" y \"calor sofocante\"."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "Rama de la IA a aplicar"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Lógica Difusa (Fuzzy Logic)."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "Técnica / Algoritmo específico"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Controlador de Lógica Difusa — Sistema de Inferencia Mamdani."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "Justificación de Ingeniería"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "La lógica difusa es la rama de la IA diseñada específicamente para manejar la incertidumbre y la imprecisión del lenguaje humano, que es exactamente lo que este problema requiere. Las variables del sistema (\"humedad media-baja\", \"calor sofocante\") son inherentemente lingüísticas y no se mapean directamente a valores numéricos discretos: ¿a partir de qué temperatura exacta el calor deja de ser \"alto\" y se convierte en \"sofocante\"? La lógica difusa resuelve esto mediante funciones de pertenencia que asignan grados de membresía a cada categoría lingüística, permitiendo transiciones graduales. El sistema de inferencia Mamdani permite definir reglas IF-THEN en lenguaje natural (\"SI humedad ES media-baja Y temperatura ES sofocante ENTONCES apertura_válvula ES alta\"), lo que hace que el sistema sea fácilmente comprensible y modificable por los agrónomos que operan el invernadero, sin necesidad de conocimientos de programación. Un controlador PID clásico requeriría umbrales exactos y funciones de transferencia precisas que no reflejan la naturaleza gradual del problema. Un modelo de machine learning (redes neuronales, árboles de decisión) necesitaría grandes cantidades de datos de entrenamiento del invernadero que podrían no estar disponibles, además de ser una caja negra difícil de interpretar. La lógica difusa no requiere datos de entrenamiento: se configura con el conocimiento experto del dominio y funciona de forma determinista y transparente, ideal para un sistema embebido de bajo costo en un invernadero."
+        }
+      ],
+      "fecha_creacion": "2026-09-30",
+      "fecha_entrega": null,
+      "estado": "completada",
+      "archivo_generado": "/Users/jesusguadalupecanulcua/developer/tarea/sandbox/entregas/Fundamentos de IA/ia_6_Actividad 2_ Matriz de Selección de Rama.pdf"
+    },
+    {
+      "id": 7,
+      "asignatura_clave": "bdnube",
+      "asignatura": "Base de Datos en la Nube",
+      "maestro": "Lizandro Israel Reyes Carrillo",
+      "titulo": "Actividad Introductoria: Unidad II — ¿Por qué SQL ya no nos alcanza?",
+      "descripcion": "Actividad introductoria individual. Entregable: conclusión de una cuartilla con referencias en APA 7.",
+      "contenido": [
+        {
+          "tipo": "titulo",
+          "texto": "Actividad Introductoria: Unidad II"
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "¿Por qué SQL ya no nos alcanza?"
+        },
+        {
+          "tipo": "titulo",
+          "texto": "1. Caso"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Imagina que el equipo acaba de lanzar una red social/tienda de moda. Diseñaron su base de datos relacional con tablas perfectas (usuarios, productos, likes…)."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Todo va bien hasta que un influencer famoso comparte la app. De repente:"
+        },
+        {
+          "tipo": "lista",
+          "items": [
+            "Pico masivo: Pasan de 50 a 200,000 usuarios por segundo viendo fotos y dando likes. La base de datos relacional empieza a rechazar conexiones porque el servidor único no soporta tantas transacciones simultáneas.",
+            "Variedad de datos: Quieren que los usuarios suban reseñas. Un usuario solo sube texto; otro sube video, fotos, calificación con estrellas y etiquetas de ropa. En su tabla relacional, la mitad de las columnas quedan en NULL o tienen que hacer varios JOINs para consultar una sola publicación.",
+            "El dilema: ¿Qué prefieres que pase en la app?"
+          ]
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "A) Que la app se caiga por completo con un error \"500 Servidor Ocupado\", pero garantizando que el contador de likes sea 100% exacto para todos."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "B) Que la app siga funcionando rápida y fluida para todo el mundo, aunque a algunos usuarios les tarde unos segundos en aparecer el nuevo comentario o like de su amigo."
+        },
+        {
+          "tipo": "titulo",
+          "texto": "2. Dinámica"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "De manera individual responden tres preguntas de reflexión técnica:"
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "1. La Decisión de Negocio"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "¿Elegiste la opción A o la B?"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Vale más la opción B, porque la disponibilidad de que un usuario siga interactuando con la app vale más que si el servidor se cae. Si se cae el servidor, el usuario deja de utilizarlo, entonces se pierden clientes. Los usuarios al ver un error 500 en el servidor se van, dejan la app y ya no la vuelven a utilizar. Según el teorema CAP propuesto por Brewer (2000), en un sistema distribuido solo se pueden garantizar dos de tres propiedades: consistencia, disponibilidad y tolerancia a particiones. Para una red social, donde la experiencia del usuario es prioritaria, sacrificar la consistencia inmediata a cambio de mantener la disponibilidad es la decisión correcta."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Pregunta clave: ¿Por qué para una red social o catálogo es preferible la Disponibilidad sobre la Consistencia inmediata?"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "La disponibilidad es muy importante porque si hay bugs dentro del sistema, son pequeños errores que se pueden solucionar. La idea es que el sistema esté siempre disponible, ya que si no lo está, los usuarios se pueden mudar a otra plataforma y puede haber pérdida de clientes y pérdida de dinero. Aunque tenga pequeños errores de inconsistencia o datos que no se guarden al instante, lo importante es mantener a los clientes y después darles una mejor experiencia de usuario. Como señalan Sadalage y Fowler (2012), la consistencia eventual es un modelo aceptable para aplicaciones sociales donde los usuarios no siempre se fijan en si un like aparece con un segundo de retraso, sino en que la plataforma esté funcionando. Por eso es más importante la disponibilidad que la consistencia: hace que los usuarios puedan permanecer dentro del sistema, y los errores menores son normales en todas las plataformas."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "2. Problema del Esquema (Hacia los Documentos JSON/BSON)"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Si cada publicación tiene datos totalmente diferentes, ¿por qué es incómodo manejarlos en tablas relacionales con columnas fijas y múltiples JOINs?"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Es incómodo porque al hacer múltiples consultas podemos usar JOIN, INNER JOIN, LEFT JOIN, RIGHT JOIN, y en la base de datos la latencia aumenta considerablemente. Optimizar la base de datos se vuelve complejo y las consultas avanzadas se vuelven muy tardadas. Con bases de datos NoSQL como MongoDB, las consultas son más fáciles con los documentos JSON porque se puede buscar la relación solo con el ID del documento. Las búsquedas son más rápidas ya que solo se trae el ID del usuario y se hace la coincidencia directamente, sin necesidad de hacer JOINs entre múltiples tablas. Según Kleppmann (2017), el modelo de documentos es más natural cuando los datos tienen una estructura de \"uno a muchos\" y cada entidad es relativamente autocontenida, como las publicaciones de una red social."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "3. Investigación"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Investiga: ¿Qué base de datos no relacional utilizan empresas como Netflix, Uber o Mercado Libre para manejar catálogos flexibles y millones de lecturas rápidas y plantea un ejemplo para una de tu elección?"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Mercado Libre utiliza bases de datos NoSQL, principalmente MongoDB y Cassandra, para manejar su catálogo de productos con millones de artículos que tienen atributos completamente diferentes entre sí (Mercado Libre, 2023). Un celular tiene RAM, pantalla y cámara, mientras que una camiseta tiene talla, color y material. En una base de datos relacional esto requeriría decenas de tablas y JOINs; con MongoDB cada producto es un documento JSON flexible que contiene exactamente los campos que necesita (MongoDB, Inc., 2024)."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "Ejemplo: JSON de un producto en el catálogo de Mercado Libre"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "{\n  \"_id\": \"MLA123456789\",\n  \"titulo\": \"iPhone 15 Pro Max 256GB\",\n  \"categoria\": \"Celulares y Smartphones\",\n  \"precio\": 24999.00,\n  \"moneda\": \"MXN\",\n  \"vendedor_id\": \"SELLER_98765\",\n  \"estado\": \"nuevo\",\n  \"stock\": 150,\n  \"atributos\": {\n    \"marca\": \"Apple\",\n    \"modelo\": \"iPhone 15 Pro Max\",\n    \"almacenamiento\": \"256GB\",\n    \"ram\": \"8GB\",\n    \"pantalla\": \"6.7 pulgadas OLED\",\n    \"camara\": \"48MP + 12MP + 12MP\",\n    \"sistema_operativo\": \"iOS 17\",\n    \"color\": \"Titanio Negro\"\n  },\n  \"imagenes\": [\n    \"img.mercadolibre.com/iphone15_1.jpg\",\n    \"img.mercadolibre.com/iphone15_2.jpg\"\n  ],\n  \"envio\": {\n    \"gratis\": true,\n    \"tipo\": \"full\",\n    \"dias_entrega\": 1\n  },\n  \"calificacion\": {\n    \"promedio\": 4.8,\n    \"total_opiniones\": 2340\n  },\n  \"fecha_publicacion\": \"2026-08-15T10:30:00Z\"\n}"
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "Mejores prácticas de modelado JSON según Mercado Libre"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Mercado Libre sigue prácticas de diseño de documentos que optimizan las lecturas masivas y la flexibilidad del catálogo:"
+        },
+        {
+          "tipo": "lista",
+          "items": [
+            "Desnormalización: embeber datos relacionados (envío, calificación, atributos) dentro del mismo documento para evitar JOINs y resolver la consulta en una sola lectura.",
+            "Esquema flexible: cada categoría define sus propios atributos sin alterar la estructura de la colección. Un celular y una camiseta conviven en la misma colección con campos diferentes.",
+            "Índices compuestos: crear índices sobre campos frecuentes como categoria + precio + calificacion.promedio para búsquedas y filtros rápidos.",
+            "Sharding por categoría o región: distribuir los datos en múltiples servidores para soportar millones de consultas simultáneas."
+          ]
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "JSON optimizado para miles de datos (búsqueda masiva)"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Cuando Mercado Libre necesita devolver miles de resultados en una búsqueda, utiliza documentos ligeros con solo los campos esenciales para la vista de listado:"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "{\n  \"busqueda\": \"iphone\",\n  \"total_resultados\": 48530,\n  \"pagina\": 1,\n  \"resultados\": [\n    {\n      \"_id\": \"MLA123456789\",\n      \"titulo\": \"iPhone 15 Pro Max 256GB\",\n      \"precio\": 24999.00,\n      \"thumbnail\": \"img.mercadolibre.com/iphone15_thumb.jpg\",\n      \"envio_gratis\": true,\n      \"calificacion\": 4.8,\n      \"vendedor\": \"TechStore Oficial\",\n      \"condicion\": \"nuevo\"\n    },\n    {\n      \"_id\": \"MLA987654321\",\n      \"titulo\": \"iPhone 14 128GB Reacondicionado\",\n      \"precio\": 14500.00,\n      \"thumbnail\": \"img.mercadolibre.com/iphone14_thumb.jpg\",\n      \"envio_gratis\": true,\n      \"calificacion\": 4.5,\n      \"vendedor\": \"PhoneMarket\",\n      \"condicion\": \"reacondicionado\"\n    }\n  ],\n  \"filtros_disponibles\": [\n    {\"campo\": \"marca\", \"valores\": [\"Apple\", \"Samsung\", \"Xiaomi\"]},\n    {\"campo\": \"precio\", \"min\": 3000, \"max\": 45000},\n    {\"campo\": \"condicion\", \"valores\": [\"nuevo\", \"usado\", \"reacondicionado\"]}\n  ],\n  \"paginacion\": {\n    \"limite\": 50,\n    \"offset\": 0,\n    \"total_paginas\": 971\n  }\n}"
+        },
+        {
+          "tipo": "titulo",
+          "texto": "Referencias"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Brewer, E. (2000). Towards robust distributed systems. En Proceedings of the 19th Annual ACM Symposium on Principles of Distributed Computing (PODC). ACM."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Kleppmann, M. (2017). Designing data-intensive applications: The big ideas behind reliable, scalable, and maintainable systems. O'Reilly Media."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Mercado Libre. (2023). Scaling our catalog with NoSQL. Mercado Libre Tech Blog. https://medium.com/mercadolibre-tech"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "MongoDB, Inc. (2024). Data modeling introduction. MongoDB Documentation. https://www.mongodb.com/docs/manual/data-modeling/"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Sadalage, P. J. y Fowler, M. (2012). NoSQL distilled: A brief guide to the emerging world of polyglot persistence. Addison-Wesley Professional."
+        }
+      ],
+      "fecha_creacion": "2026-10-02",
+      "fecha_entrega": null,
+      "estado": "pendiente",
+      "archivo_generado": "/Users/jesusguadalupecanulcua/developer/tarea/sandbox/entregas/Base de Datos en la Nube/bdnube_7_Actividad_Introductoria__Unida.docx"
+    },
+    {
+      "id": 8,
+      "asignatura_clave": "ia",
+      "asignatura": "Fundamentos de Inteligencia Artificial",
+      "maestro": "Ricardo Joel Perez Caliz",
+      "titulo": "Actividad 3: Auditoría de una Aplicación Comercial de IA",
+      "descripcion": "Reporte de análisis técnico-ético (1,500 palabras). Elegir plataforma comercial con IA, analizar cómo optimiza la experiencia del usuario, evaluar prácticas cuestionables como burbujas de filtro o recolección excesiva de datos.",
+      "contenido": [
+        {
+          "tipo": "titulo",
+          "texto": "Auditoría de una Aplicación Comercial de IA: TikTok"
+        },
+        {
+          "tipo": "titulo",
+          "texto": "Introducción"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "La inteligencia artificial se ha convertido en el motor invisible que impulsa las plataformas digitales más utilizadas del mundo. Entre todas ellas, TikTok destaca como un caso de estudio particularmente revelador: su algoritmo de recomendación, impulsado por técnicas avanzadas de aprendizaje automático, ha redefinido la forma en que millones de personas consumen contenido audiovisual. Con más de 1,500 millones de usuarios activos mensuales a nivel mundial, TikTok no solo ha revolucionado el entretenimiento digital, sino que también ha planteado interrogantes profundas sobre la ética en el uso de la inteligencia artificial. El presente reporte tiene como objetivo analizar cómo TikTok utiliza la IA para optimizar la experiencia del usuario, identificar los beneficios que esta tecnología genera para la empresa, y evaluar críticamente si la plataforma incurre en prácticas cuestionables como la creación de burbujas de filtro o la recolección excesiva de datos personales."
+        },
+        {
+          "tipo": "titulo",
+          "texto": "1. Descripción de la plataforma y su uso de IA"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "TikTok es una aplicación de redes sociales desarrollada por la empresa china ByteDance, lanzada internacionalmente en 2017. Su propuesta de valor central es la creación y consumo de videos cortos, típicamente de entre 15 segundos y 10 minutos de duración. Lo que distingue a TikTok de otras plataformas es su página principal \"Para ti\" (For You Page o FYP), un feed de contenido completamente personalizado que no depende de las cuentas que el usuario sigue, sino de un sistema de recomendación basado en inteligencia artificial."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "El algoritmo de TikTok emplea una combinación de técnicas de aprendizaje profundo (deep learning), procesamiento de lenguaje natural (NLP) y visión por computadora. El sistema analiza múltiples señales en tiempo real: el tiempo que el usuario pasa viendo cada video, si lo ve completo o lo salta, si da like, comenta, comparte o guarda, qué hashtags y sonidos interactúa, el tipo de contenido que crea, e incluso el dispositivo y la ubicación geográfica. Toda esta información alimenta modelos de redes neuronales que construyen un perfil de intereses extremadamente detallado para cada usuario, actualizándose con cada interacción."
+        },
+        {
+          "tipo": "titulo",
+          "texto": "2. Cómo la IA optimiza la experiencia del usuario"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "La inteligencia artificial de TikTok optimiza la experiencia del usuario de varias maneras fundamentales. En primer lugar, el sistema de recomendación personalizada es capaz de identificar los intereses de un nuevo usuario en cuestión de minutos. A diferencia de plataformas como YouTube o Instagram, donde el usuario necesita seguir cuentas específicas para construir su feed, TikTok comienza a mostrar contenido relevante desde la primera sesión, analizando las señales implícitas del comportamiento de navegación. Esta capacidad de \"arranque en frío\" (cold start) es posible gracias a modelos de filtrado colaborativo que aprovechan patrones de usuarios similares."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "En segundo lugar, la IA de TikTok introduce diversidad controlada en el feed. El algoritmo no solo muestra contenido que sabe que el usuario disfrutará, sino que periódicamente introduce videos de categorías nuevas o creadores desconocidos para explorar potenciales intereses latentes. Esta estrategia de exploración-explotación, basada en técnicas como los bandidos multi-brazo (multi-armed bandits), mantiene la experiencia fresca y evita que el usuario se aburra."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "En tercer lugar, TikTok utiliza visión por computadora para analizar el contenido de los videos: reconoce objetos, rostros, texto superpuesto, escenarios y hasta el tono emocional de las escenas. El procesamiento de lenguaje natural analiza las descripciones, hashtags y comentarios. Esta comprensión profunda del contenido permite que las recomendaciones sean semánticamente precisas, no solo basadas en metadatos superficiales. Además, la plataforma emplea IA para herramientas de creación como filtros de realidad aumentada, efectos de voz, subtítulos automáticos y traducción, democratizando la producción de contenido audiovisual."
+        },
+        {
+          "tipo": "titulo",
+          "texto": "3. Beneficios para la empresa"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "El uso de IA genera beneficios económicos masivos para ByteDance. El algoritmo de recomendación maximiza el tiempo de permanencia en la aplicación: el usuario promedio de TikTok pasa aproximadamente 95 minutos diarios en la plataforma, superando a cualquier otra red social. Este alto nivel de engagement se traduce directamente en ingresos publicitarios, ya que más tiempo en pantalla significa más impresiones de anuncios. En 2023, los ingresos globales de TikTok superaron los 16 mil millones de dólares, y se estima que para 2025 alcanzaron los 23 mil millones."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "La IA también permite la publicidad hipersegmentada. Los modelos de aprendizaje automático construyen perfiles detallados de cada usuario que permiten a los anunciantes dirigir sus campañas con una precisión sin precedentes. TikTok puede predecir no solo qué productos interesan a un usuario, sino en qué momento del día es más receptivo a cierto tipo de publicidad. Además, el algoritmo impulsa la economía de creadores: al dar visibilidad a contenido basado en calidad percibida y no en número de seguidores, TikTok atrae constantemente a nuevos creadores, lo que genera un ciclo virtuoso de contenido fresco que mantiene a los usuarios en la plataforma."
+        },
+        {
+          "tipo": "titulo",
+          "texto": "4. Evaluación de prácticas cuestionables"
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "4.1 Burbujas de filtro y aislamiento ideológico"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Una de las preocupaciones éticas más graves es la creación de burbujas de filtro. El algoritmo de TikTok, al optimizar el engagement, tiende a reforzar las preferencias existentes del usuario, mostrándole progresivamente contenido más extremo o unilateral sobre temas polarizantes. Investigaciones del Wall Street Journal (2021) demostraron que cuentas nuevas podían ser conducidas en pocas horas hacia contenido sobre trastornos alimenticios, teorías conspirativas o contenido político extremista, simplemente porque el algoritmo detectaba que esos temas generaban más tiempo de visualización. Esta radicalización algorítmica es particularmente preocupante dado que una proporción significativa de usuarios de TikTok son adolescentes y jóvenes adultos, quienes son más susceptibles a la influencia de contenido sesgado. El aislamiento ideológico resultante erosiona el pensamiento crítico y fragmenta el discurso público."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "4.2 Recolección excesiva de datos personales"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "TikTok ha sido objeto de múltiples investigaciones y sanciones regulatorias por su manejo de datos personales. La aplicación recopila una cantidad extraordinaria de información: ubicación GPS, identificadores del dispositivo, contenido del portapapeles, patrones de tecleo, datos biométricos faciales (a través de los filtros de realidad aumentada), historial de navegación dentro y fuera de la app, contactos del teléfono y metadatos de los archivos multimedia. En 2023, la Comisión de Protección de Datos de Irlanda multó a TikTok con 345 millones de euros por violaciones al GDPR relacionadas con el tratamiento de datos de menores de edad. En Estados Unidos, la FTC también ha impuesto sanciones millonarias por prácticas similares. La preocupación se intensifica por la vinculación de ByteDance con el gobierno chino, lo que ha generado debates sobre si los datos de usuarios occidentales podrían ser accedidos por autoridades extranjeras, llevando a prohibiciones parciales o totales de la aplicación en varios países."
+        },
+        {
+          "tipo": "subtitulo",
+          "texto": "4.3 Diseño adictivo y manipulación del comportamiento"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "Más allá de las burbujas de filtro y la recolección de datos, TikTok emplea patrones de diseño deliberadamente adictivos potenciados por IA. El scroll infinito, la reproducción automática de videos y las notificaciones personalizadas están diseñados para explotar los mecanismos de dopamina del cerebro humano. El algoritmo aprende exactamente qué tipo de contenido genera la mayor respuesta emocional en cada usuario y lo dosifica estratégicamente para maximizar el tiempo de uso. Estudios de salud mental publicados en el Journal of Behavioral Addictions (2022) han encontrado correlaciones significativas entre el uso intensivo de TikTok y síntomas de ansiedad, depresión y déficit de atención en adolescentes. La empresa, consciente de estos efectos, ha implementado medidas como límites de tiempo opcionales, pero críticos señalan que estas herramientas son insuficientes y están diseñadas más como escudo regulatorio que como protección genuina del bienestar del usuario."
+        },
+        {
+          "tipo": "titulo",
+          "texto": "Conclusión"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "TikTok representa un caso paradigmático de cómo la inteligencia artificial puede crear simultáneamente una experiencia de usuario extraordinariamente atractiva y plantear riesgos éticos significativos. Su algoritmo de recomendación es, desde el punto de vista técnico, una obra maestra de la ingeniería de aprendizaje automático: capaz de comprender preferencias individuales con una precisión asombrosa y de conectar a creadores con audiencias de manera orgánica. Sin embargo, esta misma capacidad se convierte en un arma de doble filo cuando se utiliza para maximizar el engagement sin considerar las consecuencias sobre el bienestar mental de los usuarios, la diversidad informativa o el derecho a la privacidad."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "El análisis revela que TikTok sí incurre en las tres prácticas cuestionables evaluadas: genera burbujas de filtro que refuerzan sesgos y pueden conducir a la radicalización; recolecta datos personales de manera excesiva y con transparencia insuficiente, especialmente tratándose de usuarios menores de edad; y emplea técnicas de diseño adictivo que priorizan las métricas de engagement sobre la salud de los usuarios. Como futuros profesionales de tecnologías de la información, este caso nos recuerda que el poder de la IA conlleva una responsabilidad proporcional: no basta con que un sistema funcione eficientemente; debe funcionar éticamente. La regulación gubernamental, la transparencia algorítmica y el diseño centrado en el bienestar del usuario son pilares indispensables para que la innovación tecnológica sirva genuinamente a la sociedad."
+        },
+        {
+          "tipo": "titulo",
+          "texto": "Referencias"
+        },
+        {
+          "tipo": "lista",
+          "items": [
+            "ByteDance (2020). How TikTok recommends videos #ForYou. TikTok Newsroom.",
+            "Wall Street Journal (2021). Investigation: TikTok's Algorithm and Its Effect on Users. The Wall Street Journal.",
+            "Comisión de Protección de Datos de Irlanda (2023). Decision on TikTok Technology Limited regarding children's data processing under GDPR.",
+            "Montag, C., Yang, H. & Elhai, J. D. (2021). On the Psychology of TikTok Use: A First Glimpse from Empirical Findings. Frontiers in Public Health, 9, 641673.",
+            "Pariser, E. (2011). The Filter Bubble: What the Internet Is Hiding from You. Penguin Press.",
+            "UNESCO (2021). Recomendación sobre la Ética de la Inteligencia Artificial.",
+            "European Commission (2022). Digital Services Act: Regulation of Algorithmic Recommender Systems."
+          ]
+        }
+      ],
+      "fecha_creacion": "2026-10-02",
+      "fecha_entrega": null,
+      "estado": "completada",
+      "archivo_generado": "/Users/jesusguadalupecanulcua/developer/tarea/sandbox/entregas/ia_8_Actividad 3_ Auditoría de una Aplicación.pdf"
     }
   ]
 }
