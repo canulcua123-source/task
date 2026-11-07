@@ -1,7 +1,10 @@
 # Tokens y sesiones
 .token_cache.json
+.token_cache.*.tmp
 .teams_session*/
 .ts_*/
+.env
+*.env
 
 # Python
 *.pyc
@@ -16,8 +19,20 @@ assets/portada_*.png
 # Sandbox (tareas y entregas locales)
 sandbox/
 
+# Entregas legacy (scripts one-off escriben en entregas/)
+entregas/
+
+# Documentos generados (no versionar PDFs/DOCX de tareas)
+*.pdf
+*.docx
+
 # Assets generados
 assets/*.png
+# Excepción: el logo institucional SÍ se versiona (la portada lo busca
+# en config.json -> escuela.logo = assets/logo_utm.png; en clon fresco
+# sin él la portada cae al texto "UTM").
+!assets/logo_utm.png
+!assets/.gitkeep
 
 # Scripts auxiliares one-off
 tareas_teams.json

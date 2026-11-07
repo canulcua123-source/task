@@ -1,0 +1,3 @@
+# Este archivo existe solo para que git versione la carpeta assets/
+# (assets/*.png está en .gitignore). En un clon fresco, gestor.py
+# crea la carpeta antes de generar la portada (ver gestor.py).
