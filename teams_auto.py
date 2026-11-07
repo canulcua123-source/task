@@ -16,25 +16,41 @@ BASE_DIR = Path(__file__).parent
 ASSETS = BASE_DIR / "assets"
 TAREAS_PATH = BASE_DIR / "tareas_teams.json"
 
-EMAIL = os.environ.get("TEAMS_EMAIL", "24090714@alumno.utmetropolitana.edu.mx")
+# Sin valor por defecto: el correo escolar es PII y el repo es público.
+# Se toma de TEAMS_EMAIL o se pide por teclado (nunca hardcodeado).
+EMAIL = os.environ.get("TEAMS_EMAIL") or ""
 UA = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36"
+
+
+def _obtener_email():
+    """Devuelve el correo de Teams: TEAMS_EMAIL o lo pide por teclado."""
+    global EMAIL
+    if not EMAIL:
+        EMAIL = input("Correo de Teams (o define TEAMS_EMAIL): ").strip()
+    if not EMAIL:
+        raise ValueError(
+            "Falta el correo de Teams: define la variable TEAMS_EMAIL "
+            "o escríbelo cuando se pida."
+        )
+    return EMAIL
 
 
 def _login(page, password):
     """Login completo a Teams."""
+    email = _obtener_email()
     page.goto("https://teams.microsoft.com")
     time.sleep(5)
 
     # Email
     try:
         ei = page.wait_for_selector('input[type="email"]', timeout=8000)
-        ei.fill(EMAIL)
+        ei.fill(email)
         time.sleep(1)
         page.click('input[type="submit"]')
         time.sleep(5)
     except Exception:
         # Tal vez ya hay cuenta guardada
-        acct = page.query_selector(f'[data-test-id="{EMAIL}"]')
+        acct = page.query_selector(f'[data-test-id="{email}"]')
         if acct:
             acct.click()
             time.sleep(5)

@@ -8,6 +8,7 @@ import json
 import os
 import stat
 import sys
+import tempfile
 from pathlib import Path
 from datetime import datetime
 from urllib.parse import quote
@@ -36,15 +37,36 @@ def _get_cache():
     """Carga o crea cache de tokens MSAL."""
     cache = msal.SerializableTokenCache()
     if TOKEN_CACHE.exists():
-        cache.deserialize(TOKEN_CACHE.read_text())
+        try:
+            cache.deserialize(TOKEN_CACHE.read_text(encoding="utf-8"))
+        except Exception as e:
+            # Cache corrupto (disco, edición accidental): descartarlo
+            # en vez de romper todo el login.
+            print(f"Aviso: cache de token corrupto, se descarta y se pedirá login de nuevo ({e})")
     return cache
 
 
 def _save_cache(cache):
-    """Guarda cache de tokens con permisos restrictivos (600)."""
+    """Guarda cache de tokens con permisos restrictivos (600) desde su creación.
+
+    Escritura atómica: se escribe a un temporal creado con mkstemp
+    (permisos 0600 por defecto) y se reemplaza el cache con os.replace,
+    así nunca queda un archivo legible (644) con refresh tokens.
+    """
     if cache.has_state_changed:
-        TOKEN_CACHE.write_text(cache.serialize())
-        TOKEN_CACHE.chmod(stat.S_IRUSR | stat.S_IWUSR)  # 600
+        fd, tmp_path = tempfile.mkstemp(dir=BASE_DIR, prefix=".token_cache.", suffix=".tmp")
+        try:
+            with os.fdopen(fd, "w", encoding="utf-8") as f:
+                f.write(cache.serialize())
+            os.chmod(tmp_path, stat.S_IRUSR | stat.S_IWUSR)  # 600
+            os.replace(tmp_path, TOKEN_CACHE)
+        except Exception:
+            try:
+                os.close(fd)
+            except OSError:
+                pass
+            Path(tmp_path).unlink(missing_ok=True)
+            raise
 
 
 def _get_app(cache):
@@ -169,7 +191,7 @@ def listar_tareas_teams(token, class_id=None):
     todas = []
 
     if class_id:
-        data = _graph_get(f"/education/classes/{class_id}/assignments", token)
+        data = _graph_get(f"/education/classes/{quote(str(class_id), safe='')}/assignments", token)
         if data and "value" in data:
             todas.extend(data["value"])
     else:
@@ -177,7 +199,7 @@ def listar_tareas_teams(token, class_id=None):
         clases = _graph_get("/education/me/classes", token)
         if clases and "value" in clases:
             for c in clases["value"]:
-                data = _graph_get(f"/education/classes/{c['id']}/assignments", token)
+                data = _graph_get(f"/education/classes/{quote(str(c['id']), safe='')}/assignments", token)
                 if data and "value" in data:
                     for a in data["value"]:
                         a["_clase"] = c.get("displayName", "?")
@@ -211,7 +233,7 @@ def listar_tareas_teams(token, class_id=None):
 
 def ver_tarea_detalle(token, class_id, assignment_id):
     """Obtiene el detalle de una tarea específica."""
-    data = _graph_get(f"/education/classes/{class_id}/assignments/{assignment_id}", token)
+    data = _graph_get(f"/education/classes/{quote(str(class_id), safe='')}/assignments/{quote(str(assignment_id), safe='')}", token)
     if not data:
         return None
 
@@ -240,7 +262,7 @@ def ver_tarea_detalle(token, class_id, assignment_id):
 
     # Recursos adjuntos
     resources = _graph_get(
-        f"/education/classes/{class_id}/assignments/{assignment_id}/resources", token
+        f"/education/classes/{quote(str(class_id), safe='')}/assignments/{quote(str(assignment_id), safe='')}/resources", token
     )
     if resources and resources.get("value"):
         print(f"\nRecursos adjuntos: {len(resources['value'])}")
@@ -254,7 +276,7 @@ def ver_tarea_detalle(token, class_id, assignment_id):
 def obtener_mi_submission(token, class_id, assignment_id):
     """Obtiene la submission del estudiante para una tarea."""
     data = _graph_get(
-        f"/education/classes/{class_id}/assignments/{assignment_id}/submissions", token
+        f"/education/classes/{quote(str(class_id), safe='')}/assignments/{quote(str(assignment_id), safe='')}/submissions", token
     )
     if data and "value" in data and data["value"]:
         return data["value"][0]  # Primera submission (la del estudiante)
@@ -278,11 +300,11 @@ def subir_archivo_tarea(token, class_id, assignment_id, archivo_path):
 
     # Crear carpeta de recursos y subir archivo
     # Paso 1: Crear upload session
-    setup_url = f"/education/classes/{class_id}/assignments/{assignment_id}/submissions/{submission_id}/resources"
+    setup_url = f"/education/classes/{quote(str(class_id), safe='')}/assignments/{quote(str(assignment_id), safe='')}/submissions/{quote(str(submission_id), safe='')}/resources"
 
     # Paso 1: setupResourcesFolder (debe ser POST, no GET)
     setup_resp = _graph_post(
-        f"/education/classes/{class_id}/assignments/{assignment_id}/submissions/{submission_id}/setUpResourcesFolder",
+        f"/education/classes/{quote(str(class_id), safe='')}/assignments/{quote(str(assignment_id), safe='')}/submissions/{quote(str(submission_id), safe='')}/setUpResourcesFolder",
         token,
         data={}
     )
@@ -322,7 +344,7 @@ def subir_archivo_tarea(token, class_id, assignment_id, archivo_path):
     if not drive_id or not item_id:
         print("Error: No se pudo obtener driveId/itemId del archivo subido.")
         return False
-    file_url = f"https://graph.microsoft.com/v1.0/drives/{drive_id}/items/{item_id}"
+    file_url = f"https://graph.microsoft.com/v1.0/drives/{quote(str(drive_id), safe='')}/items/{quote(str(item_id), safe='')}"
 
     resource_data = {
         "resource": {
@@ -349,7 +371,7 @@ def entregar_tarea(token, class_id, assignment_id):
 
     submission_id = submission["id"]
     r = _graph_post(
-        f"/education/classes/{class_id}/assignments/{assignment_id}/submissions/{submission_id}/submit",
+        f"/education/classes/{quote(str(class_id), safe='')}/assignments/{quote(str(assignment_id), safe='')}/submissions/{quote(str(submission_id), safe='')}/submit",
         token
     )
     if r.status_code in (200, 201):
@@ -387,7 +409,7 @@ def revisar_tareas_pendientes():
         clase_info = {"nombre": c.get("displayName", "?"), "id": c["id"]}
         resultado["clases"].append(clase_info)
 
-        assignments = _graph_get(f"/education/classes/{c['id']}/assignments", token)
+        assignments = _graph_get(f"/education/classes/{quote(str(c['id']), safe='')}/assignments", token)
         if assignments and "value" in assignments:
             for a in assignments["value"]:
                 if a.get("status") == "assigned":
@@ -439,7 +461,7 @@ def obtener_tareas_estructuradas():
         class_id = c["id"]
         class_name = c.get("displayName", "?")
 
-        assignments = _graph_get(f"/education/classes/{class_id}/assignments", token)
+        assignments = _graph_get(f"/education/classes/{quote(str(class_id), safe='')}/assignments", token)
         if not assignments or "value" not in assignments:
             continue
 
