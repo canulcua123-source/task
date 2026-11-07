@@ -14,7 +14,9 @@ import html as html_mod
 import json
 import os
 import sys
+import tempfile
 import time
+import webbrowser
 from pathlib import Path
 
 BASE_DIR = Path(__file__).parent
@@ -123,23 +125,27 @@ def html_a_pdf(html_str, pdf_path):
     """Convierte HTML a PDF con Playwright."""
     from playwright.sync_api import sync_playwright
 
-    html_tmp = "/tmp/_tarea_pdf_tmp.html"
-    Path(html_tmp).write_text(html_str, encoding="utf-8")
+    # Temporal único por ejecución (nunca una ruta fija en /tmp):
+    # evita colisiones entre ejecuciones y ataques por symlink local.
+    fd, html_tmp = tempfile.mkstemp(suffix=".html", prefix="_tarea_pdf_tmp_")
+    try:
+        with os.fdopen(fd, "w", encoding="utf-8") as f:
+            f.write(html_str)
 
-    with sync_playwright() as p:
-        browser = p.chromium.launch()
-        page = browser.new_page()
-        page.goto(f"file://{html_tmp}")
-        page.wait_for_timeout(1500)
-        page.pdf(
-            path=str(pdf_path),
-            format="Letter",
-            print_background=True,
-            margin={"top": "0", "right": "0", "bottom": "0", "left": "0"},
-        )
-        browser.close()
-
-    Path(html_tmp).unlink(missing_ok=True)
+        with sync_playwright() as p:
+            browser = p.chromium.launch()
+            page = browser.new_page()
+            page.goto(f"file://{html_tmp}")
+            page.wait_for_timeout(1500)
+            page.pdf(
+                path=str(pdf_path),
+                format="Letter",
+                print_background=True,
+                margin={"top": "0", "right": "0", "bottom": "0", "left": "0"},
+            )
+            browser.close()
+    finally:
+        Path(html_tmp).unlink(missing_ok=True)
 
 
 # ─── 5. VALIDACIÓN ──────────────────────────────────────────
@@ -235,7 +241,9 @@ def generar_pdf_completo(tarea_id, abrir=False):
     gestor.save_db(db)
 
     if abrir:
-        os.system(f'open "{pdf_path}"')
+        # Sin shell (antes: os.system('open ...'), solo macOS e inyección
+        # por shell). webbrowser.open usa el visor por defecto de cada SO.
+        webbrowser.open(str(pdf_path))
 
     return str(pdf_path)
 

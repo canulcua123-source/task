@@ -634,6 +634,18 @@
         },
         {
           "tipo": "titulo",
+          "texto": "Introducción"
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "La Inteligencia Artificial (IA) es una de las tecnologías más transformadoras de nuestro tiempo: está presente en la salud, la educación, la agricultura, el transporte y las finanzas, y cambia la forma en que trabajamos, aprendemos y nos comunicamos. Esta investigación tiene como objetivo analizar esa transformación con una mirada crítica, examinando los riesgos e implicaciones éticas y sociales de la IA, sus aplicaciones y casos de estudio reales, y qué son los Modelos de Lenguaje Grande (LLM) y cómo están estructurados."
+        },
+        {
+          "tipo": "parrafo",
+          "texto": "El documento se organiza en tres partes. En la primera se analizan los principales riesgos éticos y sociales, como el sesgo algorítmico, la privacidad, el desplazamiento laboral, la desinformación y la falta de transparencia. En la segunda se presentan aplicaciones y casos de estudio en distintos sectores. En la tercera se explica qué son los LLM, su arquitectura Transformer y su proceso de entrenamiento, para cerrar con una conclusión y las referencias consultadas."
+        },
+        {
+          "tipo": "titulo",
           "texto": "1. Riesgos e implicaciones éticas y sociales de la Inteligencia Artificial"
         },
         {
@@ -820,8 +832,8 @@
       ],
       "fecha_creacion": "2026-09-25",
       "fecha_entrega": "2026-09-25",
-      "estado": "en_progreso",
-      "archivo_generado": "/Users/jesusguadalupecanulcua/developer/tarea/entregas/ia_4_Actividad_1__Investigación_sob.docx"
+      "estado": "completada",
+      "archivo_generado": "/home/hatch/workspace/task-repo/sandbox/entregas/ia_4_Actividad 1_ Investigación sobre IA.pdf"
     },
     {
       "id": 5,

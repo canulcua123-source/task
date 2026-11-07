@@ -18,7 +18,7 @@ CONFIG_PATH = BASE_DIR / "config.json"
 DB_PATH = BASE_DIR / "tareas_db.json"
 ENTREGAS_DIR = BASE_DIR / "sandbox" / "entregas"
 
-ENTREGAS_DIR.mkdir(exist_ok=True)
+ENTREGAS_DIR.mkdir(parents=True, exist_ok=True)
 
 
 def load_config():
@@ -402,6 +402,9 @@ def _crear_portada_imagen(config, tarea):
             y += block[2] + gap
 
     # Guardar imagen temporal (tempfile seguro, sin race condition)
+    # Crear assets/ antes de mkstemp: en un clon fresco no existe
+    # (assets/*.png está en .gitignore y solo hay un .gitkeep versionado).
+    (BASE_DIR / "assets").mkdir(parents=True, exist_ok=True)
     fd, portada_path = tempfile.mkstemp(suffix=".png", prefix="portada_", dir=BASE_DIR / "assets")
     os.close(fd)
     img.save(portada_path, "PNG", quality=95)
@@ -663,14 +666,22 @@ def flujo_completo(tarea_id, subir_teams=False, criterios_review=None):
     # Paso 5: Subir a Teams si se pide
     if subir_teams and tarea.get("class_id") and tarea.get("assignment_id"):
         try:
-            from teams import subir_archivo_tarea, entregar_tarea
+            from teams import obtener_token, subir_archivo_tarea, entregar_tarea
             tarea_actualizada = obtener_tarea(tarea_id)
             ruta = tarea_actualizada.get("archivo_generado")
-            if ruta:
-                subir_archivo_tarea(tarea["class_id"], tarea["assignment_id"], ruta)
-                entregar_tarea(tarea["class_id"], tarea["assignment_id"])
-                actualizar_estado(tarea_id, "entregada")
-                resultado["pasos"].append({"paso": "teams", "estado": "ok"})
+            if not ruta:
+                resultado["pasos"].append({"paso": "teams", "estado": "error", "detalle": "Sin archivo_generado para subir"})
+            else:
+                # teams.subir_archivo_tarea / entregar_tarea exigen el token
+                # como primer argumento: obtenerlo antes de llamarlas.
+                token = obtener_token()
+                if not token:
+                    resultado["pasos"].append({"paso": "teams", "estado": "error", "detalle": "No se pudo obtener token de Teams (autenticación fallida)"})
+                elif subir_archivo_tarea(token, tarea["class_id"], tarea["assignment_id"], ruta) and entregar_tarea(token, tarea["class_id"], tarea["assignment_id"]):
+                    actualizar_estado(tarea_id, "entregada")
+                    resultado["pasos"].append({"paso": "teams", "estado": "ok"})
+                else:
+                    resultado["pasos"].append({"paso": "teams", "estado": "error", "detalle": "La subida o la entrega a Teams falló (ver mensajes anteriores)"})
         except Exception as e:
             resultado["pasos"].append({"paso": "teams", "estado": "error", "detalle": str(e)})
 

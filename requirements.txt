@@ -1,0 +1,14 @@
+# Dependencias del Sistema de Tareas Escolares UTM.
+# Instalar con:  pip install -r requirements.txt
+# Después:       playwright install chromium   (solo para generar_pdf.py)
+# Python: 3.12 (probado con 3.12.3).
+# Versiones fijadas y verificadas contra PyPI el 2026-11-06.
+# Nota: `click` se listaba en el README pero no se importa en ningún .py,
+# por eso no está aquí.
+python-docx==1.2.0
+Pillow==13.0.0
+msal==1.39.0
+requests==2.34.2
+playwright==1.64.1
+rich==15.0.0
+fpdf2==2.9.0
